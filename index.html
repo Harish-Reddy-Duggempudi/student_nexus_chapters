@@ -4,26 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Nexus | Connect, Learn, Grow</title>
-    <!-- SEO & Metadata (NEW) -->
+    <!-- SEO & Metadata -->
     <meta name="description" content="Student Nexus is the largest global student community connecting peers for learning, innovation, and career growth.">
     <meta name="keywords" content="student community, hackathons, workshops, student networking, career growth, global student, Student Nexus">
     <meta property="og:title" content="Student Nexus | Global Student Community">
     <meta property="og:description" content="Join the largest student community to learn, innovate, and grow together.">
     <meta property="og:type" content="website">
-    <!-- ⚠️ SEO: Consider adding Twitter Card tags (twitter:card, twitter:site, twitter:title) for optimized sharing. -->
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@StudentNexus">
+    <meta name="twitter:title" content="Student Nexus | Global Student Community">
+    <meta name="twitter:description" content="Join the largest student community to learn, innovate, and grow together.">
     
-    <!-- Favicon Placeholder (NEW) -->
-    <!-- ⚠️ SEO: Update favicon from placeholder to your official logo for branding. -->
+    <!-- Favicon Placeholder -->
     <link rel="icon" type="image/png" href="https://placehold.co/32x32/4f46e5/ffffff?text=SN"> 
 
     <!-- Load Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Lucide Icons for aesthetic appeal -->
     <script type="module">
-        // Added ChevronRight for CTA buttons
-        import { createIcons, Search, Users, Calendar, BookOpen, GraduationCap, Zap, MapPin, Image, Youtube, Instagram, Linkedin, Twitter, Target, Lightbulb, TrendingUp, Mail, HelpCircle, Phone, ChevronRight } from 'https://cdn.jsdelivr.net/npm/lucide@latest/dist/esm/lucide.js';
-        // ⚠️ Technical: For production, unused icons should be removed to reduce load.
-        createIcons({ icons: { Search, Users, Calendar, BookOpen, GraduationCap, Zap, MapPin, Image, Youtube, Instagram, Linkedin, Twitter, Target, Lightbulb, TrendingUp, Mail, HelpCircle, Phone, ChevronRight } });
+        import { createIcons, Search, Users, Calendar, BookOpen, GraduationCap, Zap, MapPin, Image, Youtube, Instagram, Linkedin, Twitter, Target, Lightbulb, TrendingUp, Mail, HelpCircle, Phone, ChevronRight, User } from 'https://cdn.jsdelivr.net/npm/lucide@latest/dist/esm/lucide.js';
+        createIcons({ icons: { Search, Users, Calendar, BookOpen, GraduationCap, Zap, MapPin, Image, Youtube, Instagram, Linkedin, Twitter, Target, Lightbulb, TrendingUp, Mail, HelpCircle, Phone, ChevronRight, User, Linkedin } });
     </script>
     <!-- LEAFLET.JS IMPORTS FOR INTERACTIVE MAP -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -32,8 +33,8 @@
         /* Custom styles for professional font and smooth scroll */
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth; /* ✅ General: Smooth scrolling is implemented */
-            background-color: #f9fafb; /* Light gray background for body */
+            scroll-behavior: smooth; 
+            background-color: #f9fafb; 
         }
         .text-gradient {
             background-image: linear-gradient(to right, #4f46e5, #0ea5e9);
@@ -47,13 +48,13 @@
             display: none;
         }
         .scrollbar-hide {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         /* Map container height */
         #chapter-map {
-            height: 384px; /* Equivalent to h-96 */
-            z-index: 1; /* Ensure map layers draw correctly */
+            height: 384px; 
+            z-index: 1;
         }
         /* Styling for Leaflet popup content */
         .leaflet-popup-content-wrapper {
@@ -69,21 +70,21 @@
         /* --------------------------- */
         @keyframes scroll-right {
             from { transform: translateX(0); }
-            to { transform: translateX(-50%); } /* Half of total content width for loop */
+            to { transform: translateX(-50%); } 
         }
         @keyframes scroll-left {
-            from { transform: translateX(-50%); } /* Half of total content width for loop */
+            from { transform: translateX(-50%); } 
             to { transform: translateX(0); }
         }
 
         .scrolling-row-right {
-            animation: scroll-right 60s linear infinite; /* Slow scroll to the right (visually left) */
+            animation: scroll-right 60s linear infinite; 
         }
         .scrolling-row-left {
-            animation: scroll-left 60s linear infinite; /* Slow scroll to the left (visually right) */
+            animation: scroll-left 60s linear infinite; 
         }
         .scrolling-container {
-            width: 200%; /* Double the width to hold duplicated content */
+            width: 200%;
             display: flex;
         }
     </style>
@@ -100,9 +101,10 @@
                     <span class="text-xl font-extrabold text-indigo-800">Student Nexus</span>
                 </a>
 
-                <!-- Desktop Menu Links (UPDATED) -->
+                <!-- Desktop Menu Links -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#fabric" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">MS Fabric</a>
                         <a href="#reach" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Our Reach</a>
                         <a href="#events" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Events</a>
                         <a href="#about" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">About</a>
@@ -125,9 +127,10 @@
             </div>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) (UPDATED) -->
+        <!-- Mobile Menu (Hidden by default) -->
         <div id="mobile-menu" class="hidden md:hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#fabric" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">MS Fabric</a>
                 <a href="#reach" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Our Reach</a>
                 <a href="#events" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Events</a>
                 <a href="#about" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">About</a>
@@ -143,7 +146,6 @@
         <!-- 1. Hero Section -->
         <section id="hero" class="bg-gray-50 py-20 sm:py-32 lg:py-40" role="banner">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" role="main">
-                <!-- ⚠️ Accessibility: Added role="banner" to section and role="main" to content container. -->
                 <span class="text-sm font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-100 py-1 px-3 rounded-full mb-4 inline-block">Future-Proof Your Student Life</span>
                 <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
                     <span class="block leading-tight text-gray-900">Connecting</span>
@@ -160,7 +162,28 @@
                         Upcoming Events
                     </a>
                 </div>
-                <!-- ⚠️ Aesthetic: Consider adding a subtle background illustration or animation here. -->
+            </div>
+        </section>
+
+        <!-- 1.5 Microsoft Fabric User Group Section -->
+        <section id="fabric" class="bg-white py-12 sm:py-16">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-blue-900 text-white p-6 sm:p-10 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                    <div class="flex items-center space-x-4">
+                        <!-- Microsoft Fabric Logo Placeholder -->
+                        <img src="https://placehold.co/60x60/f0f8ff/0078d4?text=MF" alt="Microsoft Fabric Logo Placeholder" class="h-12 w-12 sm:h-16 sm:w-16 flex-shrink-0 rounded-lg">
+                        <div>
+                            <p class="text-sm font-semibold uppercase tracking-wider text-blue-300">Official Collaboration</p>
+                            <h3 class="text-xl sm:text-2xl font-extrabold leading-tight">Microsoft Fabric User Group</h3>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="font-medium mb-3">Managed by Student Nexus</p>
+                        <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-full shadow-lg text-blue-900 bg-white hover:bg-gray-100 transition duration-300">
+                            Explore User Group &rarr;
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -184,14 +207,13 @@
                         <p class="text-base text-gray-600">Members around the world</p>
                     </div>
                     <div class="p-4 text-center">
-                        <p class="text-4xl font-extrabold text-gray-900 mb-1">152</p>
+                        <p class="text-4xl font-extrabold text-gray-900 mb-1">2</p>
                         <p class="text-base text-gray-600">Local Chapters</p>
                     </div>
                     <div class="p-4 text-center">
                         <p class="text-4xl font-extrabold text-gray-900 mb-1">4652</p>
                         <p class="text-base text-gray-600">Events since 2018</p>
                     </div>
-                    <!-- ⚠️ UX: Consider adding animated counters here for increased engagement. -->
                 </div>
                 <!-- End Stats Grid -->
 
@@ -200,48 +222,101 @@
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div id="chapter-map" class="rounded-2xl shadow-xl border-4 border-indigo-100"></div>
                     </div>
-                    <!-- ⚠️ Feature: Map markers and data are currently static placeholders in JS. Needs dynamic data implementation. -->
 
-                    <!-- Enhanced Chapter Cards (CTA Icons Updated) -->
+                    <!-- Enhanced Chapter Cards (MATCHING NEW STYLE) -->
                     <h3 class="mt-16 text-2xl font-bold text-gray-900 text-center mb-8">Featured Local Chapters</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <!-- Chapter Card 1 -->
-                        <div class="bg-indigo-50 p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
-                            <span data-lucide="map-pin" class="w-8 h-8 text-indigo-600 mb-3"></span>
-                            <h4 class="text-xl font-bold text-gray-900 mb-2">Hyderabad Chapter</h4>
-                            <p class="text-gray-600 text-sm mb-3">The hub for tech innovation and data science studies.</p>
-                            <!-- ⚠️ Feature: Link 'a href' needs to go to a chapter sign-up form/page. -->
-                            <a href="#" class="inline-flex items-center text-sm font-semibold text-white bg-indigo-600 px-4 py-2 rounded-full hover:bg-indigo-700">
-                                Join Chapter <span data-lucide="chevron-right" class="w-4 h-4 ml-1"></span>
-                            </a>
+                        
+                        <!-- Chapter Card 1 (Hyderabad) -->
+                        <div class="bg-white rounded-xl shadow-2xl ring-2 ring-gray-100 transition duration-300 hover:shadow-3xl hover:ring-indigo-400 col-span-1">
+                            <!-- Image Section (Larger and more prominent) -->
+                            <div class="overflow-hidden rounded-t-xl h-48 bg-indigo-500 relative">
+                                <img src="https://placehold.co/400x250/6366f1/ffffff?text=Hyderabad+Tech+Hub" alt="Hyderabad city skyline representing the chapter" class="w-full h-full object-cover opacity-80">
+                                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                                    <h5 class="text-white text-2xl font-extrabold">Hyderabad Chapter</h5>
+                                </div>
+                            </div>
+                            
+                            <!-- Content Section -->
+                            <div class="p-5">
+                                <!-- Badge -->
+                                <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-orange-600 text-white mb-3">
+                                    Official Chapter
+                                </span>
+                                
+                                <h4 class="text-2xl font-extrabold text-gray-900 mb-1">Student Nexus Hyderabad</h4>
+                                <div class="flex items-center text-sm text-gray-500 mb-4">
+                                    <span data-lucide="map-pin" class="w-4 h-4 mr-1 flex-shrink-0"></span> Hyderabad / India
+                                </div>
+                                
+                                <!-- Leader Profile Section -->
+                                <div class="border-t pt-3 mt-3 border-gray-100 flex items-center justify-between bg-indigo-50 p-3 rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <img src="https://placehold.co/40x40/4f46e5/ffffff/png?text=JD" alt="Leader Profile" class="w-10 h-10 rounded-full object-cover border-2 border-indigo-300">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-800">Harish R. Duggempudi</p>
+                                            <p class="text-xs text-gray-600">Chapter Lead</p>
+                                        </div>
+                                    </div>
+                                    <a href="#" target="_blank" aria-label="Harish's LinkedIn" class="text-indigo-600 hover:text-indigo-800 transition">
+                                        <span data-lucide="linkedin" class="w-5 h-5"></span>
+                                    </a>
+                                </div>
+                                
+                                <a href="#" class="inline-flex items-center justify-center w-full px-4 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-orange-600 hover:bg-orange-700 transition duration-150 shadow-md mt-4">
+                                    View chapter
+                                </a>
+                            </div>
                         </div>
-                        <!-- Chapter Card 2 -->
-                        <div class="bg-indigo-50 p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
-                            <span data-lucide="map-pin" class="w-8 h-8 text-indigo-600 mb-3"></span>
-                            <h4 class="text-xl font-bold text-gray-900 mb-2">Bengaluru Chapter</h4>
-                            <p class="text-gray-600 text-sm mb-3">Focusing on start-up culture, design, and entrepreneurial skills.</p>
-                            <a href="#" class="inline-flex items-center text-sm font-semibold text-white bg-indigo-600 px-4 py-2 rounded-full hover:bg-indigo-700">
-                                Join Chapter <span data-lucide="chevron-right" class="w-4 h-4 ml-1"></span>
-                            </a>
+
+                        <!-- Chapter Card 2 (Bengaluru) -->
+                        <div class="bg-white rounded-xl shadow-2xl ring-2 ring-gray-100 transition duration-300 hover:shadow-3xl hover:ring-indigo-400 col-span-1">
+                            <!-- Image Section (Larger and more prominent) -->
+                            <div class="overflow-hidden rounded-t-xl h-48 bg-cyan-500 relative">
+                                <img src="https://placehold.co/400x250/0ea5e9/ffffff?text=Bengaluru+Startup+Hub" alt="Bengaluru tech park representing the chapter" class="w-full h-full object-cover opacity-80">
+                                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                                    <h5 class="text-white text-2xl font-extrabold">Bengaluru Chapter</h5>
+                                </div>
+                            </div>
+                            <!-- Content Section -->
+                            <div class="p-5">
+                                <!-- Badge -->
+                                <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-orange-600 text-white mb-3">
+                                    Official Chapter
+                                </span>
+                                
+                                <h4 class="text-2xl font-extrabold text-gray-900 mb-1">Student Nexus Bengaluru</h4>
+                                <div class="flex items-center text-sm text-gray-500 mb-4">
+                                    <span data-lucide="map-pin" class="w-4 h-4 mr-1 flex-shrink-0"></span> Bengaluru / India
+                                </div>
+
+                                <!-- Leader Profile Section -->
+                                <div class="border-t pt-3 mt-3 border-gray-100 flex items-center justify-between bg-indigo-50 p-3 rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <img src="https://placehold.co/40x40/0ea5e9/ffffff/png?text=MS" alt="Leader Profile" class="w-10 h-10 rounded-full object-cover border-2 border-cyan-300">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-800">Manya S. Gowda</p>
+                                            <p class="text-xs text-gray-600">Chapter Lead</p>
+                                        </div>
+                                    </div>
+                                    <a href="#" target="_blank" aria-label="Manya's LinkedIn" class="text-indigo-600 hover:text-indigo-800 transition">
+                                        <span data-lucide="linkedin" class="w-5 h-5"></span>
+                                    </a>
+                                </div>
+
+                                <a href="#" class="inline-flex items-center justify-center w-full px-4 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-orange-600 hover:bg-orange-700 transition duration-150 shadow-md mt-4">
+                                    View chapter
+                                </a>
+                            </div>
                         </div>
-                        <!-- Chapter Card 3 -->
-                        <div class="bg-indigo-50 p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
-                            <span data-lucide="map-pin" class="w-8 h-8 text-indigo-600 mb-3"></span>
-                            <h4 class="text-xl font-bold text-gray-900 mb-2">Pune Chapter</h4>
-                            <p class="text-gray-600 text-sm mb-3">A community dedicated to advanced research and academic excellence.</p>
-                            <a href="#" class="inline-flex items-center text-sm font-semibold text-white bg-indigo-600 px-4 py-2 rounded-full hover:bg-indigo-700">
-                                Join Chapter <span data-lucide="chevron-right" class="w-4 h-4 ml-1"></span>
-                            </a>
+                        
+                        <!-- Placeholder Card for future chapters (Used remaining 2 columns of the 4-column grid) -->
+                        <div class="hidden sm:block lg:col-span-2">
+                             <div class="bg-gray-100 p-6 rounded-xl shadow-inner border-dashed border-2 border-gray-300 flex items-center justify-center h-full">
+                                 <p class="text-gray-500 text-center font-medium">More chapters coming soon across India!</p>
+                             </div>
                         </div>
-                        <!-- Chapter Card 4 -->
-                        <div class="bg-indigo-50 p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
-                            <span data-lucide="map-pin" class="w-8 h-8 text-indigo-600 mb-3"></span>
-                            <h4 class="text-xl font-bold text-gray-900 mb-2">Delhi Chapter</h4>
-                            <p class="text-gray-600 text-sm mb-3">Connecting students interested in policy, public speaking, and debate.</p>
-                            <a href="#" class="inline-flex items-center text-sm font-semibold text-white bg-indigo-600 px-4 py-2 rounded-full hover:bg-indigo-700">
-                                Join Chapter <span data-lucide="chevron-right" class="w-4 h-4 ml-1"></span>
-                            </a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -286,10 +361,9 @@
                                 <a href="#" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition duration-150 shadow-md">RSVP Now &rarr;</a>
                             </div>
                         </dl>
-                        <!-- ⚠️ Structure: Consider creating a reusable template/JS function to render event cards to reduce HTML repetition. -->
                     </div>
 
-                    <!-- Past Events Column (STYLING UPDATED) -->
+                    <!-- Past Events Column -->
                     <div>
                         <h3 class="text-2xl font-extrabold text-gray-900 mb-6 border-b pb-2">Past Events</h3>
                         <dl class="space-y-6">
@@ -314,13 +388,12 @@
                                 <a href="#" class="text-sm font-semibold text-gray-600 hover:text-gray-800">View Recap &rarr;</a>
                             </div>
                         </dl>
-                        <!-- ⚠️ Aesthetic: Add carousel/slider of images or photos here for better visual storytelling of past events. -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. Gallery Section (Two Scrolling Rows - RESTORED) -->
+        <!-- 4. Gallery Section (Two Scrolling Rows) -->
         <section id="gallery" class="py-16 sm:py-24 bg-white overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:text-center mb-12">
@@ -337,8 +410,6 @@
                     <!-- Duplicate content for seamless infinite scroll (8 items total) -->
                     <!-- Content 1 -->
                     <div class="flex-shrink-0 w-80 h-48 bg-gray-200 rounded-xl shadow-lg overflow-hidden relative group inline-block mx-3">
-                        <!-- ⚠️ Performance: Add loading="lazy" attribute to all images. -->
-                        <!-- ⚠️ Content: Replace placeholder URLs with real event photos. -->
                         <img src="https://placehold.co/320x192/4f46e5/ffffff?text=Hackathon" alt="Students coding during a hackathon session" class="w-full h-full object-cover transition duration-300 group-hover:scale-110" loading="lazy">
                     </div>
                     <div class="flex-shrink-0 w-80 h-48 bg-gray-200 rounded-xl shadow-lg overflow-hidden relative group inline-block mx-3">
@@ -397,7 +468,6 @@
                     </div>
                 </div>
             </div>
-            <!-- ⚠️ Feature: For better UX, add a lightbox or modal feature to view images in a larger format. -->
         </section>
 
         <!-- 5. Video Section -->
@@ -422,7 +492,6 @@
                         loading="lazy">
                     </iframe>
                 </div>
-                <!-- ⚠️ Performance/UX: Add loading="lazy" and consider including a poster image before the iframe loads. -->
                 <!-- Button below video -->
                 <div class="mt-10 text-center">
                     <a href="#" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
@@ -432,7 +501,7 @@
             </div>
         </section>
 
-        <!-- 6. About / Mission Section (TESTIMONIAL ADDED) -->
+        <!-- 6. About / Mission Section (TESTIMONIAL ADDED, SEMANTICS UPDATED) -->
         <section id="about" class="py-16 sm:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:text-center">
@@ -447,50 +516,49 @@
                     <div class="mt-8 max-w-xl mx-auto p-4 bg-indigo-50 border-l-4 border-indigo-500 rounded-lg text-indigo-800 italic shadow-inner">
                         "Student Nexus transformed my academic path. I met my co-founders at a virtual workshop and we launched our startup last month!" - Jane D., Member since 2022
                     </div>
-                    <!-- ⚠️ Feature: Consider adding multiple testimonials or a simple carousel. -->
                 </div>
 
+                <!-- Benefits Grid (UPDATED to use article/h3/p for semantic accessibility) -->
                 <div class="mt-16 max-w-5xl mx-auto">
-                    <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-4 md:gap-x-8 md:gap-y-10">
-                        <!-- Benefit 1: Networking -->
-                        <div class="text-center">
+                    <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-4 md:gap-x-8 md:gap-y-10">
+                        
+                        <article class="text-center">
                             <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-indigo-100 text-indigo-600 mb-4">
                                 <span data-lucide="users" class="h-6 w-6"></span>
                             </div>
-                            <!-- ⚠️ Accessibility: For better semantic structure, consider using <article> elements for each benefit instead of <div>/dt/dd combination. -->
-                            <dt class="text-lg leading-6 font-medium text-gray-900">Global Networking</dt>
-                            <dd class="mt-2 text-sm text-gray-500">Connect with peers and mentors from various disciplines and continents.</dd>
-                        </div>
-                        <!-- Benefit 2: Workshops -->
-                        <div class="text-center">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Global Networking</h3>
+                            <p class="mt-2 text-sm text-gray-500">Connect with peers and mentors from various disciplines and continents.</p>
+                        </article>
+                        
+                        <article class="text-center">
                             <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-indigo-100 text-indigo-600 mb-4">
                                 <span data-lucide="zap" class="h-6 w-6"></span>
                             </div>
-                            <dt class="text-lg leading-6 font-medium text-gray-900">Skill Workshops</dt>
-                            <dd class="mt-2 text-sm text-gray-500">Master in-demand skills through expert-led, hands-on sessions.</dd>
-                        </div>
-                        <!-- Benefit 3: Hackathons -->
-                        <div class="text-center">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Skill Workshops</h3>
+                            <p class="mt-2 text-sm text-gray-500">Master in-demand skills through expert-led, hands-on sessions.</p>
+                        </article>
+                        
+                        <article class="text-center">
                             <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-indigo-100 text-indigo-600 mb-4">
                                 <span data-lucide="lightbulb" class="h-6 w-6"></span>
                             </div>
-                            <dt class="text-lg leading-6 font-medium text-gray-900">Innovation Challenges</dt>
-                            <dd class="mt-2 text-sm text-gray-500">Participate in hackathons and challenges to build your portfolio.</dd>
-                        </div>
-                        <!-- Benefit 4: Growth Opportunities -->
-                        <div class="text-center">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Innovation Challenges</h3>
+                            <p class="mt-2 text-sm text-gray-500">Participate in hackathons and challenges to build your portfolio.</p>
+                        </article>
+                        
+                        <article class="text-center">
                             <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-indigo-100 text-indigo-600 mb-4">
                                 <span data-lucide="trending-up" class="h-6 w-6"></span>
                             </div>
-                            <dt class="text-lg leading-6 font-medium text-gray-900">Career Growth</dt>
-                            <dd class="mt-2 text-sm text-gray-500">Access exclusive job and internship opportunities from partners.</dd>
-                        </div>
-                    </dl>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Career Growth</h3>
+                            <p class="mt-2 text-sm text-gray-500">Access exclusive job and internship opportunities from partners.</p>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 7. Newsletter Section (NEW) -->
+        <!-- 7. Newsletter Section (AJAX Enabled) -->
         <section id="newsletter" class="py-16 sm:py-24 bg-indigo-50">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -500,22 +568,24 @@
                     Subscribe to our global newsletter for exclusive event invites, scholarships, and career insights.
                 </p>
                 <div class="mt-8 max-w-lg mx-auto">
-                    <form class="sm:flex sm:mt-0 space-y-4 sm:space-y-0 sm:space-x-4">
+                    <form id="newsletter-form" class="sm:flex sm:mt-0 space-y-4 sm:space-y-0 sm:space-x-4" action="https://formspree.io/f/mwpwwbwa" method="POST">
                         <label for="email-address" class="sr-only">Email address</label>
-                        <input id="email-address" name="email-address" type="email" autocomplete="email" required class="w-full px-5 py-3 border border-gray-300 rounded-full shadow-lg placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your student email">
+                        <input id="email-address" name="email" type="email" autocomplete="email" required class="w-full px-5 py-3 border border-gray-300 rounded-full shadow-lg placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your student email">
                         <button type="submit" class="w-full sm:w-auto flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300">
                             Subscribe
                         </button>
                     </form>
-                    <!-- ⚠️ Feature: Form action and backend logic are missing. Needs integration with a service (e.g., Formspree). -->
-                    <!-- ⚠️ UX: Add validation messages and success/failure feedback on submission. -->
+                    <!-- Submission Feedback Message (Hidden by default) -->
+                    <div id="newsletter-message" class="hidden mt-4 p-4 rounded-xl bg-green-100 text-green-800 text-center font-semibold shadow-md" role="alert">
+                        🎉 Success! You're subscribed to Student Nexus insights!
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 8. Contact Section -->
+        <!-- 8. Contact Section (LAYOUT UPDATED) -->
         <section id="contact" class="py-16 sm:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:text-center">
                     <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Get In Touch</h2>
                     <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -526,27 +596,66 @@
                     </p>
                 </div>
                 
-                <div class="mt-12 max-w-lg mx-auto bg-gray-50 p-8 rounded-xl shadow-2xl">
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                            <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Jane Doe">
+                <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Info Panel -->
+                    <div class="bg-indigo-50 p-8 rounded-xl shadow-2xl space-y-6">
+                        <h3 class="text-2xl font-extrabold text-indigo-800 mb-4 border-b border-indigo-200 pb-3">Our Details</h3>
+                        
+                        <div class="flex items-start space-x-4">
+                            <span data-lucide="mail" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Email Support</h4>
+                                <p class="text-indigo-700 break-words">support@studentnexus.org</p>
+                            </div>
                         </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                            <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="jane@studentnexus.org">
+                        
+                        <div class="flex items-start space-x-4">
+                            <span data-lucide="phone" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Phone</h4>
+                                <p class="text-indigo-700">+91 98765 43210 (India Office)</p>
+                            </div>
                         </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="How can we help you?"></textarea>
+                        
+                        <div class="flex items-start space-x-4">
+                            <span data-lucide="map-pin" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Head Office</h4>
+                                <p class="text-indigo-700">Level 5, Innovation Hub, Bengaluru, India, 560001</p>
+                            </div>
                         </div>
-                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150">
-                            Send Message
-                        </button>
-                    </form>
-                    <!-- ⚠️ Feature: Form submit action is missing. Needs backend integration. -->
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-2xl">
+                        <h3 class="text-2xl font-extrabold text-gray-900 mb-6">Send Us a Message</h3>
+                        <form id="contact-form" class="space-y-6" action="https://formspree.io/f/xvgvvryb" method="POST">
+                            <div>
+                                <label for="contact-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="contact-name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Jane Doe">
+                            </div>
+                             <div>
+                                <label for="contact-phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                <input type="tel" id="contact-phone" name="phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="+91 98765 43210">
+                            </div>
+                            <div>
+                                <label for="contact-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" id="contact-email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="jane@studentnexus.org">
+                            </div>
+                            <div>
+                                <label for="contact-message" class="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea id="contact-message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="How can we help you?"></textarea>
+                            </div>
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150">
+                                Send Message
+                            </button>
+                        </form>
+                        <!-- Contact Submission Feedback Message (Hidden by default) -->
+                        <div id="contact-message-feedback" class="hidden mt-4 p-4 rounded-xl bg-green-100 text-green-800 text-center font-semibold shadow-md" role="alert">
+                            Thank you! Your message has been received. We will reach out to you within 4 days.
+                        </div>
+                    </div>
                 </div>
-                <!-- ⚠️ Aesthetic: Consider adding an info panel (address, phone, email) or a static map next to the form. -->
             </div>
         </section>
 
@@ -568,7 +677,7 @@
                             <span data-lucide="help-circle" class="w-5 h-5 text-indigo-600 transition duration-300 group-open:rotate-180"></span>
                         </summary>
                         <p class="pt-4 text-gray-600 text-sm">
-                            You can join a local chapter by clicking the "Join Chapter" link on the interactive map in the **Our Reach** section above, or by filling out the application form linked on that page.
+                            You can join a local chapter by clicking the "Join Chapter" link on the interactive map in the <strong>Our Reach</strong> section above, or by filling out the application form linked on that page.
                         </p>
                     </details>
                     <!-- FAQ Item 2 -->
@@ -614,7 +723,7 @@
         </section>
     </main>
 
-    <!-- 11. Footer (UPDATED) -->
+    <!-- 11. Footer -->
     <footer class="bg-gray-800">
         <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
             <!-- Social Media Links -->
@@ -635,15 +744,18 @@
 
             <nav class="-mx-5 -my-2 flex flex-wrap justify-center mt-6" aria-label="Footer">
                 <div class="px-5 py-2">
+                    <a href="#fabric" class="text-base text-gray-300 hover:text-white">MS Fabric</a>
+                </div>
+                <div class="px-5 py-2">
                     <a href="#reach" class="text-base text-gray-300 hover:text-white">Our Reach</a>
                 </div>
                 <div class="px-5 py-2">
                     <a href="#events" class="text-base text-gray-300 hover:text-white">Events</a>
                 </div>
-                <div class="px-5 py-2">
+                 <div class="px-5 py-2">
                     <a href="#about" class="text-base text-gray-300 hover:text-white">About</a>
                 </div>
-                 <div class="px-5 py-2">
+                <div class="px-5 py-2">
                     <a href="#newsletter" class="text-base text-gray-300 hover:text-white">Newsletter</a>
                 </div>
                 <div class="px-5 py-2">
@@ -659,36 +771,34 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu Toggle and Leaflet Map Initialization -->
+    <!-- JavaScript for Mobile Menu Toggle, Leaflet Map, and AJAX Form Submission -->
     <script>
         // Mobile Menu Toggle Logic
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-        // ⚠️ Navigation: Needs logic to handle active link highlighting when scrolling.
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        // LEAFLET MAP INITIALIZATION
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // LEAFLET MAP INITIALIZATION, NEWSLETTER, AND CONTACT AJAX LOGIC
         window.onload = function() {
+            // --- 1. LEAFLET MAP INITIALIZATION ---
             try {
-                // 1. Initialize the map and set its view to center India (roughly)
-                const map = L.map('chapter-map').setView([19.0, 78.0], 5); // Center near central India, zoom 5
+                // Centered on India (Zoom level 5 works well for a two-city focus)
+                const map = L.map('chapter-map').setView([20.5937, 78.9629], 5); 
                 
-                // 2. Add the tile layer (Map Skin)
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
                     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
                 }).addTo(map);
 
-                // 3. Define the chapter locations (Latitude, Longitude)
+                // Hyderabad and Bengaluru Chapters
                 const chapters = [
                     { lat: 17.3850, lng: 78.4867, city: "Hyderabad" },
-                    { lat: 12.9716, lng: 77.5946, city: "Bengaluru" },
-                    { lat: 18.5204, lng: 73.8567, city: "Pune" },
-                    { lat: 28.7041, lng: 77.1025, city: "Delhi" }
+                    { lat: 12.9716, lng: 77.5946, city: "Bengaluru" }
                 ];
 
-                // 4. Add markers with popups for each chapter
                 chapters.forEach(chapter => {
                     const popupContent = `
                         <div class="font-bold text-lg mb-1">${chapter.city} Chapter</div>
@@ -700,13 +810,12 @@
                         .bindPopup(popupContent);
                 });
 
-                // Optional: Fit the map bounds to include all markers for optimal view
                 const bounds = L.latLngBounds(chapters.map(c => [c.lat, c.lng]));
                 map.fitBounds(bounds, { padding: [50, 50] });
 
             } catch (error) {
                 console.error("Leaflet map initialization failed:", error);
-                // Fallback: If Leaflet fails to load, display the placeholder text instead of a blank box.
+                // Fallback for map
                 const mapDiv = document.getElementById('chapter-map');
                 if (mapDiv) {
                     mapDiv.className = 'relative bg-gray-100 h-96 rounded-2xl shadow-xl border-4 border-indigo-100 flex items-center justify-center';
@@ -722,8 +831,135 @@
                     `;
                 }
             }
+            
+            // --- 2. NEWSLETTER AJAX SUBMISSION LOGIC ---
+            const newsletterForm = document.getElementById('newsletter-form');
+            const newsletterMessage = document.getElementById('newsletter-message');
+
+            if (newsletterForm) {
+                const submitButton = newsletterForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                newsletterForm.addEventListener('submit', async function(e) {
+                    e.preventDefault(); 
+                    
+                    const data = new FormData(newsletterForm);
+
+                    // 1. Temporary loading state
+                    submitButton.textContent = 'Submitting...';
+                    submitButton.disabled = true;
+
+                    try {
+                        const response = await fetch(newsletterForm.action, {
+                            method: newsletterForm.method,
+                            body: data,
+                            headers: { 'Accept': 'application/json' }
+                        });
+
+                        if (response.ok) {
+                            // 2. SUCCESS: Hide form, show message
+                            newsletterForm.classList.add('hidden');
+                            newsletterMessage.classList.remove('hidden');
+                            newsletterMessage.classList.remove('bg-red-100', 'text-red-800');
+                            newsletterMessage.classList.add('bg-green-100', 'text-green-800');
+                            newsletterMessage.innerHTML = '🎉 Success! You\'re subscribed to Student Nexus insights!';
+                            
+                            // 3. Reset form fields (even though hidden)
+                            newsletterForm.reset(); 
+                            
+                            // 4. Reset button state (optional, but good practice for reuse if form were ever un-hidden)
+                            submitButton.textContent = originalText;
+                            submitButton.disabled = false;
+                            
+                        } else {
+                            // 2. RESPONSE ERROR (4xx, 5xx): Show error message AND RESET BUTTON STATE
+                            newsletterMessage.classList.remove('hidden');
+                            newsletterMessage.classList.remove('bg-green-100', 'text-green-800');
+                            newsletterMessage.classList.add('bg-red-100', 'text-red-800');
+                            newsletterMessage.textContent = 'Oops! Subscription failed. Please check your email and try again.';
+                            
+                            // 3. Reset button state
+                            submitButton.textContent = originalText;
+                            submitButton.disabled = false;
+                        }
+                    } catch (error) {
+                        console.error('Submission Network Error:', error);
+                        // 2. NETWORK ERROR: Show error message AND RESET BUTTON STATE
+                        newsletterMessage.classList.remove('hidden');
+                        newsletterMessage.classList.remove('bg-green-100', 'text-green-800');
+                        newsletterMessage.classList.add('bg-red-100', 'text-red-800');
+                        newsletterMessage.textContent = 'Network error. Please try again.';
+                        
+                        // 3. Reset button state
+                        submitButton.textContent = originalText;
+                            submitButton.disabled = false;
+                    }
+                });
+            }
+
+            // --- 3. CONTACT FORM AJAX SUBMISSION LOGIC ---
+            const contactForm = document.getElementById('contact-form');
+            const contactFeedback = document.getElementById('contact-message-feedback');
+
+            if (contactForm) {
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault(); 
+                    
+                    const data = new FormData(contactForm);
+
+                    // 1. Temporary loading state
+                    submitButton.textContent = 'Submitting...';
+                    submitButton.disabled = true;
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: contactForm.method,
+                            body: data,
+                            headers: { 'Accept': 'application/json' }
+                        });
+
+                        if (response.ok) {
+                            // 2. SUCCESS: Hide form, show custom message
+                            contactForm.classList.add('hidden');
+                            contactFeedback.classList.remove('hidden');
+                            contactFeedback.classList.remove('bg-red-100', 'text-red-800');
+                            contactFeedback.classList.add('bg-green-100', 'text-green-800');
+                            
+                            // UPDATED CUSTOM SUCCESS MESSAGE
+                            contactFeedback.innerHTML = '🎉 Your response was recorded. We will get back to you within 4 days.';
+                            
+                            // 3. Reset form fields
+                            contactForm.reset(); 
+                            
+                        } else {
+                            // 2. RESPONSE ERROR (4xx, 5xx): Show error message AND RESET BUTTON STATE
+                            contactFeedback.classList.remove('hidden');
+                            contactFeedback.classList.remove('bg-green-100', 'text-green-800');
+                            contactFeedback.classList.add('bg-red-100', 'text-red-800');
+                            contactFeedback.textContent = 'Oops! Submission failed. Please check your details and try again.';
+                            
+                        }
+                    } catch (error) {
+                        console.error('Submission Network Error:', error);
+                        // 2. NETWORK ERROR: Show error message 
+                        contactFeedback.classList.remove('hidden');
+                        contactFeedback.classList.remove('bg-green-100', 'text-green-800');
+                        contactFeedback.classList.add('bg-red-100', 'text-red-800');
+                        contactFeedback.textContent = 'Network error. Please try again.';
+                        
+                    } finally {
+                        // 3. Always reset button state after a delay or instantly on error (instant reset here)
+                        if (!contactForm.classList.contains('hidden')) {
+                           submitButton.textContent = originalText;
+                           submitButton.disabled = false;
+                        }
+                    }
+                });
+            }
         };
-        // ⚠️ General: Consider smooth scroll polyfill for older browsers.
     </script>
 </body>
 </html>
