@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Team | Student Nexus</title>
+    <meta name="description" content="Meet the core leadership team and the dedicated student volunteers who run the global Student Nexus community. See open roles and join us!">
+    
+    <link rel="icon" type="image/png" href="https://placehold.co/32x32/4f46e5/ffffff?text=SN"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+        import { createIcons, Users, MapPin, Linkedin, Twitter, Aperture, Briefcase, Calendar, Mail, FileText, ArrowRight, Star } from 'https://cdn.jsdelivr.net/npm/lucide@latest/dist/esm/lucide.js';
+        createIcons({ icons: { Users, MapPin, Linkedin, Twitter, Aperture, Briefcase, Calendar, Mail, FileText, ArrowRight, Star } });
+    </script>
+    <style>
+        /* Custom styles for professional font and smooth scroll */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; 
+            background-color: #f9fafb; 
+        }
+        .text-gradient {
+            background-image: linear-gradient(to right, #4f46e5, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <a href="index.html" class="flex-shrink-0 flex items-center space-x-3">
+                <span class="inline-flex items-center justify-center w-15 h-11 rounded-full overflow-hidden">
+                <img src="images/logo/Student-Nexus-Logo.png" alt="Student Nexus official logo" class="w-full h-full object-cover">
+                </span>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-extrabold text-indigo-800" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;">Student Nexus</span>
+                    <span class="text-sm text-black" style="font-family: 'Montserrat', sans-serif;">Meet the Team</span>
+                </div>
+            </a>
+
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-center space-x-4">
+                    <a href="index.html#events" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Events</a>
+                    <a href="index.html#about" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Our Mission</a>
+                    <a href="#roles" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition duration-150 shadow-md">Join Our Team</a>
+                </div>
+            </div>
+
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="sr-only">Open team menu</span>
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="index.html" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Home</a>
+            <a href="index.html#events" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Events</a>
+            <a href="#roles" class="block bg-indigo-500 text-white text-center mt-2 px-3 py-2 mx-2 rounded-lg text-base font-semibold hover:bg-indigo-600">Join Our Team</a>
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <section id="team-hero" class="bg-indigo-700 text-white py-20 sm:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+                    Meet the <span class="text-indigo-200">Student Nexus</span> Leadership
+                </h1>
+                <p class="mt-3 max-w-3xl mx-auto text-xl text-indigo-200 mb-8">
+                    We are a global team of passionate student leaders, committed to empowering our community through innovation, events, and education.
+                </p>
+                <a href="#roles" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-indigo-700 bg-white hover:bg-indigo-100 transition duration-300 transform hover:scale-105">
+                    See Open Roles <span data-lucide="arrow-right" class="w-5 h-5 ml-2" aria-hidden="true"></span>
+                </a>
+            </div>
+        </section>
+
+        <section id="top-leadership" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:text-center mb-12">
+                    <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Vision & Strategy</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        Founders
+                    </p>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 max-w-4xl mx-auto">
+                    
+                    <div class="flex flex-col items-center text-center bg-gray-50 p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-yellow-500 lg:col-span-1 sm:col-span-2 mx-auto">
+                        <img class="inline-block h-32 w-32 rounded-full ring-4 ring-yellow-300 object-cover" src="https://placehold.co/128x128/4f46e5/ffffff?text=AD" alt="Profile picture of Anil D., Founder & CEO" loading="lazy">
+                        <div class="mt-4">
+                            <h3 class="text-xl font-extrabold text-gray-900">Anil D.</h3>
+                            <p class="text-sm font-semibold text-yellow-600 flex items-center justify-center mt-1">
+                                <span data-lucide="star" class="w-4 h-4 mr-1" aria-hidden="true"></span> Founder & CEO
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">The visionary force driving global student empowerment and accessible tech education.</p>
+                            <div class="mt-3 flex justify-center space-x-3">
+                                <a href="#" target="_blank" aria-label="Anil D.'s LinkedIn" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <span data-lucide="linkedin" class="w-5 h-5" aria-hidden="true"></span>
+                                </a>
+                                <a href="#" target="_blank" aria-label="Anil D.'s Twitter" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <span data-lucide="twitter" class="w-5 h-5" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center bg-gray-50 p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-indigo-600">
+                        <img class="inline-block h-32 w-32 rounded-full ring-4 ring-indigo-200 object-cover" src="https://placehold.co/128x128/0ea5e9/ffffff?text=RP" alt="Profile picture of Riya P., Co-Founder & COO" loading="lazy">
+                        <div class="mt-4">
+                            <h3 class="text-xl font-extrabold text-gray-900">Riya P.</h3>
+                            <p class="text-sm font-semibold text-indigo-600 flex items-center justify-center mt-1">
+                                <span data-lucide="briefcase" class="w-4 h-4 mr-1" aria-hidden="true"></span> Co-Founder & COO
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">Oversees all global operations and ensures consistency across all local chapters.</p>
+                            <div class="mt-3 flex justify-center space-x-3">
+                                <a href="#" target="_blank" aria-label="Riya P.'s LinkedIn" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <span data-lucide="linkedin" class="w-5 h-5" aria-hidden="true"></span>
+                                </a>
+                                <a href="#" target="_blank" aria-label="Riya P.'s Twitter" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <span data-lucide="twitter" class="w-5 h-5" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center bg-gray-50 p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-indigo-600">
+                        <img class="inline-block h-32 w-32 rounded-full ring-4 ring-indigo-200 object-cover" src="https://placehold.co/128x128/f97316/ffffff?text=SK" alt="Profile picture of Sameer K., Co-Founder & Events Director" loading="lazy">
+                        <div class="mt-4">
+                            <h3 class="text-xl font-extrabold text-gray-900">Sameer K.</h3>
+                            <p class="text-sm font-semibold text-indigo-600 flex items-center justify-center mt-1">
+                                <span data-lucide="calendar" class="w-4 h-4 mr-1" aria-hidden="true"></span> Co-Founder & Events Director
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">Leads the design and execution of all virtual and in-person hackathons and workshops.</p>
+                            <div class="mt-3 flex justify-center space-x-3">
+                                <a href="#" target="_blank" aria-label="Sameer K.'s LinkedIn" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <span data-lucide="linkedin" class="w-5 h-5" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="operational-team" class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:text-center mb-12">
+                    <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Community Management</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        Core Team and Chapter Leads
+                    </p>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+                    
+                    <div class="flex flex-col items-center text-center bg-white p-6 rounded-xl shadow-md transition duration-300 border-t-4 border-blue-400">
+                        <img class="inline-block h-32 w-32 rounded-full ring-4 ring-blue-100 object-cover" src="https://placehold.co/128x128/6366f1/ffffff?text=LC" alt="Profile picture of Lena C., Communications Lead" loading="lazy">
+                        <div class="mt-4">
+                            <h3 class="text-xl font-extrabold text-gray-900">Lena C.</h3>
+                            <p class="text-sm font-semibold text-blue-600 flex items-center justify-center mt-1">
+                                <span data-lucide="mail" class="w-4 h-4 mr-1" aria-hidden="true"></span> Communications Lead
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">Manages PR, social media, and produces the weekly community newsletter.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center bg-white p-6 rounded-xl shadow-md transition duration-300 border-t-4 border-orange-400">
+                        <img class="inline-block h-32 w-32 rounded-full ring-4 ring-orange-100 object-cover" src="https://placehold.co/128x128/f97316/ffffff?text=HR" alt="Profile picture of Harish R. Duggempudi, Hyderabad Chapter Lead" loading="lazy">
+                        <div class="mt-4">
+                            <h3 class="text-xl font-extrabold text-gray-900">Harish R.</h3>
+                            <p class="text-sm font-semibold text-orange-600 flex items-center justify-center mt-1">
+                                <span data-lucide="map-pin" class="w-4 h-4 mr-1" aria-hidden="true"></span> Hyderabad Chapter Lead
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">Organizes local events and fosters growth in the Hyderabad student ecosystem.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center bg-white p-6 rounded-xl shadow-md transition duration-300 border-t-4 border-orange-400">
+                        <img class="inline-block h-32 w-32 rounded-full ring-4 ring-orange-100 object-cover" src="https://placehold.co/128x128/0ea5e9/ffffff?text=MS" alt="Profile picture of Manya S. Gowda, Bengaluru Chapter Lead" loading="lazy">
+                        <div class="mt-4">
+                            <h3 class="text-xl font-extrabold text-gray-900">Manya S.</h3>
+                            <p class="text-sm font-semibold text-orange-600 flex items-center justify-center mt-1">
+                                <span data-lucide="map-pin" class="w-4 h-4 mr-1" aria-hidden="true"></span> Bengaluru Chapter Lead
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">The primary contact and leader for all Student Nexus activities in Bengaluru.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center text-center bg-gray-100 p-6 rounded-xl shadow-inner border-dashed border-2 border-gray-300">
+                        <span data-lucide="users" class="w-12 h-12 text-gray-400 mb-3" aria-hidden="true"></span>
+                        <h3 class="text-xl font-bold text-gray-700">Your City?</h3>
+                        <p class="text-sm text-gray-500 mt-2">New Chapter Leads launching soon across India. Apply for the role!</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="roles" class="py-16 sm:py-24 bg-indigo-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:text-center mb-12">
+                    <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Your Next Opportunity</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        Open Roles & Volunteer Positions
+                    </p>
+                    <p class="mt-4 max-w-3xl text-xl text-gray-600 lg:mx-auto">
+                        Ready to make a real impact? We're looking for passionate students to join our global volunteer network and core team.
+                    </p>
+                </div>
+
+                <div class="mt-12 space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-cyan-500 flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Social Media Coordinator (Global)</h3>
+                            <p class="text-sm text-gray-600 flex items-center mt-1">
+                                <span data-lucide="users" class="w-4 h-4 mr-1 text-cyan-500" aria-hidden="true"></span> Volunteer Role | Remote
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">Drive engagement across platforms, manage content calendars, and grow our student following.</p>
+                        </div>
+                        <a href="#" class="mt-4 md:mt-0 inline-flex items-center text-sm font-semibold text-cyan-600 hover:text-cyan-800 bg-cyan-100 px-4 py-2 rounded-full transition duration-150">
+                            Apply Now <span data-lucide="file-text" class="w-4 h-4 ml-1" aria-hidden="true"></span>
+                        </a>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Chapter Ambassador (Open Regions)</h3>
+                            <p class="text-sm text-gray-600 flex items-center mt-1">
+                                <span data-lucide="map-pin" class="w-4 h-4 mr-1 text-orange-500" aria-hidden="true"></span> Volunteer Role | Local Presence Required
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">Help establish and run a new local chapter, organize meetups, and recruit local members.</p>
+                        </div>
+                        <a href="#" class="mt-4 md:mt-0 inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-800 bg-orange-100 px-4 py-2 rounded-full transition duration-150">
+                            View Details <span data-lucide="file-text" class="w-4 h-4 ml-1" aria-hidden="true"></span>
+                        </a>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500 flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Workshop Content Creator (Technical)</h3>
+                            <p class="text-sm text-gray-600 flex items-center mt-1">
+                                <span data-lucide="calendar" class="w-4 h-4 mr-1 text-green-500" aria-hidden="true"></span> Internship/Stipend Available | Remote
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">Develop learning materials for upcoming workshops (e.g., Python, Data Science, AI/ML).</p>
+                        </div>
+                        <a href="#" class="mt-4 md:mt-0 inline-flex items-center text-sm font-semibold text-green-600 hover:text-green-800 bg-green-100 px-4 py-2 rounded-full transition duration-150">
+                            Apply Now <span data-lucide="file-text" class="w-4 h-4 ml-1" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <a href="index.html#contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300">
+                        Ask a Question About Roles
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="testimonials" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <blockquote class="text-center">
+                    <p class="text-3xl font-bold italic text-gray-800">
+                        "Being a Student Nexus leader has been more than a role; it's a launchpad. I gained vital project management skills and connected with my future network."
+                    </p>
+                    <footer class="mt-6">
+                        <div class="text-base font-semibold text-indigo-600">— Riya P.</div>
+                        <div class="text-sm text-gray-500">Co-Founder & COO (Member since 2021)</div>
+                    </footer>
+                </blockquote>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+
+        <div class="flex flex-col items-center space-y-2">
+            <img src="images/logo/Student-Nexus-Logo.png" alt="Student Nexus logo"
+                class="h-24 w-auto mb-Z rounded-xl shadow-lg bg-white p-0.5" loading="lazy">
+
+            <p class="text-lg text-white tracking-wider font-extrabold" style="font-family: 'Montserrat', sans-serif;">
+                Student Nexus
+            </p>
+            <span class="text-sm text-gray-400 tracking-wider" style="font-family: 'Montserrat', sans-serif;">
+                Global Student Community
+            </span>
+        </div>
+
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-150" aria-label="Instagram">
+                <i data-lucide="instagram" class="h-6 w-6" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-150" aria-label="LinkedIn">
+                <i data-lucide="linkedin" class="h-6 w-6" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-150" aria-label="Twitter">
+                <i data-lucide="twitter" class="h-6 w-6" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <nav class="flex flex-wrap justify-center mt-6 space-x-6 text-sm font-medium" style="font-family: 'Poppins', sans-serif;">
+            <a href="index.html" class="hover:text-indigo-400">Home</a>
+            <a href="index.html#events" class="hover:text-indigo-400">Events</a>
+            <a href="index.html#about" class="hover:text-indigo-400">About</a>
+            <a href="#roles" class="hover:text-indigo-400">Open Roles</a>
+            <a href="index.html#contact" class="hover:text-indigo-400">Contact</a>
+        </nav>
+
+        <p class="mt-8 text-center text-gray-400 text-sm">
+            &copy; 2025 – <span id="current-year-team"></span> <span class="font-semibold text-white">Student Nexus</span>. 
+            For students, by students, everywhere ❤️
+        </p>
+    </div>
+</footer>
+
+<script>
+    // Update Dynamic Year for Team Page
+    document.getElementById("current-year-team").textContent = new Date().getFullYear();
+
+    // =========================
+    // MOBILE MENU TOGGLE LOGIC
+    // =========================
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenu.classList.toggle('hidden');
+            menuButton.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Auto-close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

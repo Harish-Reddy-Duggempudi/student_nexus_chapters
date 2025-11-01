@@ -67,90 +67,93 @@
         }
 
         /* --------------------------- */
-        /* GALLERY SCROLLING ANIMATIONS */
-        /* --------------------------- */
-        @keyframes scroll-right {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); } 
-        }
-        @keyframes scroll-left {
-            from { transform: translateX(-50%); } 
-            to { transform: translateX(0); }
-        }
+/* GALLERY SCROLLING ANIMATIONS */
+/* --------------------------- */
+.scrolling-container {
+    display: flex;
+    gap: 1rem; /* space between images */
+    width: max-content; /* container fits content */
+}
 
-        .scrolling-row-right {
-            animation: scroll-right 60s linear infinite; 
-        }
-        .scrolling-row-left {
-            animation: scroll-left 60s linear infinite; 
-        }
-        .scrolling-container {
-            width: 200%;
-            display: flex;
-        }
+.scrolling-row-right {
+    animation: scroll-right 30s linear infinite;
+}
+
+.scrolling-row-left {
+    animation: scroll-left 30s linear infinite;
+}
+
+/* Scroll from right to left */
+@keyframes scroll-right {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* scroll half content width */
+}
+
+/* Scroll from left to right */
+@keyframes scroll-left {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* Pause on hover */
+.scrolling-container:hover {
+    animation-play-state: paused;
+}
+
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- Navigation Bar -->
-<nav class="sticky top-0 z-50 bg-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo/Title -->
-            <a href="#" class="flex-shrink-0 flex items-center space-x-3">
-                <!-- Logo Circle -->
-                <span class="inline-flex items-center justify-center w-15 h-11 rounded-full overflow-hidden">
-                <img src="images/logo/Student-Nexus-Logo.png" alt="Student Nexus Logo" class="w-full h-full object-cover">
-                </span>
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    
+    <!-- Logo -->
+    <a href="#" class="flex items-center space-x-3">
+      <img src="images/logo/Student-Nexus-Logo.png" alt="Logo" class="w-12 h-12 rounded-full">
+      <div class="flex flex-col">
+        <span class="text-2xl font-extrabold text-indigo-800">Student Nexus</span>
+        <span class="text-sm text-gray-600">Global Student Community</span>
+      </div>
+    </a>
 
-                <!-- Titles -->
-                <div class="flex flex-col">
-                    <span class="text-2xl font-extrabold text-indigo-800" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;">Student Nexus</span>
-                    <span class="text-sm text-black" style="font-family: 'Montserrat', sans-serif;">Global Student Community</span>
-                </div>
-            </a>
-
-            <!-- Desktop Menu Links -->
-            <div class="hidden md:block">
-                <div class="ml-10 flex items-center space-x-4">
-                    <a href="#fabric" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">MS Fabric</a>
-                    <a href="#reach" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Our Reach</a>
-                    <a href="#events" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Events</a>
-                    <a href="#about" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">About</a>
-                    <a href="#newsletter" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Newsletter</a>
-                    <a href="#contact" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Contact</a>
-                    <a href="#faq" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">FAQ</a>
-                    <a href="#" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition duration-150 shadow-md">Join Now</a>
-                </div>
-            </div>
-
-            <!-- Mobile Menu Button (Hamburger) -->
-            <div class="md:hidden flex items-center">
-                <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-        </div>
+    <!-- Desktop Links -->
+    <div class="hidden md:flex items-center space-x-6">
+      <a href="#fabric" class="text-gray-700 hover:text-indigo-600">MS Fabric</a>
+      <a href="#reach" class="text-gray-700 hover:text-indigo-600">Our Reach</a>
+      <a href="#events" class="text-gray-700 hover:text-indigo-600">Events</a>
+      <a href="#about" class="text-gray-700 hover:text-indigo-600">About</a>
+      <a href="team.html" class="text-gray-700 hover:text-indigo-600"target="_blank" rel="noopener noreferrer">Team</a>
+      <a href="#newsletter" class="text-gray-700 hover:text-indigo-600">Newsletter</a>
+      <a href="#contact" class="text-gray-700 hover:text-indigo-600">Contact</a>
+      <a href="#faq" class="text-gray-700 hover:text-indigo-600">FAQ</a>
+      <a href="#" class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700">Join Now</a>
     </div>
 
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="hidden md:hidden">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#fabric" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">MS Fabric</a>
-            <a href="#reach" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Our Reach</a>
-            <a href="#events" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Events</a>
-            <a href="#about" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">About</a>
-            <a href="#newsletter" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Newsletter</a>
-            <a href="#contact" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Contact</a>
-            <a href="#faq" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">FAQ</a>
-            <a href="#" class="block bg-indigo-500 text-white text-center mt-2 px-3 py-2 mx-2 rounded-lg text-base font-semibold hover:bg-indigo-600">Join Now</a>
-        </div>
+    <!-- Mobile Button -->
+    <div class="md:hidden">
+      <button id="mobile-menu-button" class="text-gray-600 hover:text-indigo-600 p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+    <div class="px-4 py-4 space-y-2">
+      <a href="#fabric" class="block text-gray-700 hover:text-indigo-600">MS Fabric</a>
+      <a href="#reach" class="block text-gray-700 hover:text-indigo-600">Our Reach</a>
+      <a href="#events" class="block text-gray-700 hover:text-indigo-600">Events</a>
+      <a href="#about" class="block text-gray-700 hover:text-indigo-600">About</a>
+      <a href="team.html" class="block text-gray-700 hover:text-indigo-600"target="_blank" rel="noopener noreferrer">Team</a>
+      <a href="#newsletter" class="block text-gray-700 hover:text-indigo-600">Newsletter</a>
+      <a href="#contact" class="block text-gray-700 hover:text-indigo-600">Contact</a>
+      <a href="#faq" class="block text-gray-700 hover:text-indigo-600">FAQ</a>
+      <a href="#" class="block bg-indigo-600 text-white text-center py-2 rounded-full hover:bg-indigo-700">Join Now</a>
+    </div>
+  </div>
 </nav>
-
 
     <main>
         <!-- 1. Hero Section -->
@@ -489,19 +492,44 @@
                     </p>
                 </div>
                 <!-- Responsive Video Embed Placeholder (16:9 Aspect Ratio) -->
-                <div class="relative w-full overflow-hidden rounded-xl shadow-2xl" style="padding-top: 56.25%;">
-                    <span data-lucide="youtube" class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-red-500 opacity-70"></span>
-                    <iframe 
-                        class="absolute top-0 left-0 w-full h-full"
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" 
-                        title="YouTube video player placeholder" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen
-                        loading="lazy">
-                    </iframe>
-                </div>
-                <!-- Button below video -->
+<div id="video-section" class="relative w-full overflow-hidden rounded-xl shadow-2xl" style="padding-top: 56.25%;">
+    <!-- Optional Play Icon -->
+    <span data-lucide="youtube" class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-red-500 opacity-70"></span>
+    
+    <!-- Responsive Iframe Embed -->
+    <iframe 
+        id="youtube-video"
+        class="absolute top-0 left-0 w-full h-full"
+        src="https://www.youtube.com/embed/OLKq3hrN6o8?enablejsapi=1&rel=0&autoplay=0" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen
+        loading="lazy">
+    </iframe>
+</div>
+
+<script>
+  // Intersection Observer to detect when video comes into view
+  const videoSection = document.getElementById('video-section');
+  const youtubeVideo = document.getElementById('youtube-video');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        // Add autoplay when section is visible
+        youtubeVideo.src = "https://www.youtube.com/embed/OLKq3hrN6o8?enablejsapi=1&autoplay=1&rel=0";
+      } else {
+        // Stop video when leaving view
+        youtubeVideo.src = "https://www.youtube.com/embed/OLKq3hrN6o8?enablejsapi=1&autoplay=0&rel=0";
+      }
+    });
+  }, { threshold: 0.5 }); // Trigger when 50% of section is visible
+
+  observer.observe(videoSection);
+</script>
+
+<!-- Button below video -->
                 <div class="mt-10 text-center">
                     <a href="#" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
                         Join Now
@@ -592,81 +620,142 @@
             </div>
         </section>
 
-        <!-- 8. Contact Section (LAYOUT UPDATED) -->
-        <section id="contact" class="py-16 sm:py-24 bg-white">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="lg:text-center">
-                    <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Get In Touch</h2>
-                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                        Contact Us
-                    </p>
-                    <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-                        We'd love to hear from you. Send us a message or find our contact information below.
-                    </p>
+        <!-- 8. Contact Section (UPDATED) -->
+<!-- 8. Contact Section (HYDERABAD GENERAL LOCATION) -->
+<section id="contact" class="py-16 sm:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+            <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Get In Touch</h2>
+            <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Contact Us
+            </p>
+            <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                We'd love to hear from you. Send us a message or find our contact information below.
+            </p>
+        </div>
+        
+        <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Contact Info Panel -->
+            <div class="bg-indigo-50 p-8 rounded-xl shadow-2xl space-y-6">
+                <h3 class="text-2xl font-extrabold text-indigo-800 mb-4 border-b border-indigo-200 pb-3">Our Details</h3>
+                
+                <!-- Hyderabad Location -->
+                <div class="flex items-start space-x-4">
+                    <span data-lucide="map-pin" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Location</h4>
+                        <p class="text-indigo-700">Hyderabad, Telangana, India</p>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="flex items-start space-x-4">
+                    <span data-lucide="mail" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Email Support</h4>
+                        <p class="text-indigo-700 break-words">support@studentnexus.org</p>
+                    </div>
                 </div>
                 
-                <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <!-- Contact Info Panel -->
-                    <div class="bg-indigo-50 p-8 rounded-xl shadow-2xl space-y-6">
-                        <h3 class="text-2xl font-extrabold text-indigo-800 mb-4 border-b border-indigo-200 pb-3">Our Details</h3>
-                        
-                        <div class="flex items-start space-x-4">
-                            <span data-lucide="mail" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Email Support</h4>
-                                <p class="text-indigo-700 break-words">support@studentnexus.org</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <span data-lucide="phone" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Phone</h4>
-                                <p class="text-indigo-700">+91 98765 43210 (India Office)</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <span data-lucide="map-pin" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Head Office</h4>
-                                <p class="text-indigo-700">Level 5, Innovation Hub, Bengaluru, India, 560001</p>
-                            </div>
-                        </div>
+                <!-- Phone -->
+                <div class="flex items-start space-x-4">
+                    <span data-lucide="phone" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Phone</h4>
+                        <p class="text-indigo-700">+91 98765 43210</p>
                     </div>
-                    
-                    <!-- Contact Form -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-2xl">
-                        <h3 class="text-2xl font-extrabold text-gray-900 mb-6">Send Us a Message</h3>
-                        <form id="contact-form" class="space-y-6" action="https://formspree.io/f/xvgvvryb" method="POST">
-                            <div>
-                                <label for="contact-name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                                <input type="text" id="contact-name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Jane Doe">
-                            </div>
-                             <div>
-                                <label for="contact-phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                                <input type="tel" id="contact-phone" name="phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="+91 98765 43210">
-                            </div>
-                            <div>
-                                <label for="contact-email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                                <input type="email" id="contact-email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="jane@studentnexus.org">
-                            </div>
-                            <div>
-                                <label for="contact-message" class="block text-sm font-medium text-gray-700">Message</label>
-                                <textarea id="contact-message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="How can we help you?"></textarea>
-                            </div>
-                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150">
-                                Send Message
-                            </button>
-                        </form>
-                        <!-- Contact Submission Feedback Message (Hidden by default) -->
-                        <div id="contact-message-feedback" class="hidden mt-4 p-4 rounded-xl bg-green-100 text-green-800 text-center font-semibold shadow-md" role="alert">
-                            Thank you! Your message has been received. We will reach out to you within 4 days.
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="flex items-start space-x-4">
+                    <span data-lucide="message-circle" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">WhatsApp</h4>
+                        <p class="text-indigo-700">
+                            <a href="https://wa.me/919876543210" target="_blank" class="underline hover:text-indigo-800">
+                                +91 98765 43210
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="flex items-start space-x-4">
+                    <span data-lucide="globe" class="w-6 h-6 text-indigo-600 flex-shrink-0"></span>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Follow Us</h4>
+                        <div class="flex space-x-4 mt-1">
+                            <a href="https://www.facebook.com/studentnexus" target="_blank" class="text-indigo-600 hover:text-indigo-800" aria-label="Facebook">
+                                <span data-lucide="facebook"></span>
+                            </a>
+                            <a href="https://www.instagram.com/studentnexus" target="_blank" class="text-indigo-600 hover:text-indigo-800" aria-label="Instagram">
+                                <span data-lucide="instagram"></span>
+                            </a>
+                            <a href="https://twitter.com/studentnexus" target="_blank" class="text-indigo-600 hover:text-indigo-800" aria-label="Twitter">
+                                <span data-lucide="twitter"></span>
+                            </a>
+                            <a href="https://www.linkedin.com/company/studentnexus" target="_blank" class="text-indigo-600 hover:text-indigo-800" aria-label="LinkedIn">
+                                <span data-lucide="linkedin"></span>
+                            </a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Map -->
+                <div class="mt-6 h-64 rounded-xl overflow-hidden shadow-inner">
+                    <div id="hyderabad-map" class="w-full h-full rounded-xl"></div>
+                </div>
             </div>
-        </section>
+            
+            <!-- Contact Form -->
+            <div class="bg-gray-50 p-8 rounded-xl shadow-2xl">
+                <h3 class="text-2xl font-extrabold text-gray-900 mb-6">Send Us a Message</h3>
+                <form id="contact-form" class="space-y-6" action="https://formspree.io/f/xvgvvryb" method="POST">
+                    <div>
+                        <label for="contact-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" id="contact-name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Jane Doe" required>
+                    </div>
+                     <div>
+                        <label for="contact-phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                        <input type="tel" id="contact-phone" name="phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="+91 98765 43210" required>
+                    </div>
+                    <div>
+                        <label for="contact-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="contact-email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="jane@studentnexus.org" required>
+                    </div>
+                    <div>
+                        <label for="contact-message" class="block text-sm font-medium text-gray-700">Message</label>
+                        <textarea id="contact-message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150">
+                        Send Message
+                    </button>
+                </form>
+                <div id="contact-message-feedback" class="hidden mt-4 p-4 rounded-xl bg-green-100 text-green-800 text-center font-semibold shadow-md" role="alert">
+                    Thank you! Your message has been received. We will reach out to you within 4 days.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Leaflet Map Script for Hyderabad -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const mapDiv = document.getElementById('hyderabad-map');
+    if(mapDiv) {
+        const map = L.map('hyderabad-map').setView([17.3850, 78.4867], 12); // Centered over Hyderabad city
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+        }).addTo(map);
+
+        L.marker([17.3850, 78.4867]).addTo(map)
+            .bindPopup('<b>Hyderabad</b><br>Telangana, India')
+            .openPopup();
+    }
+});
+</script>
 
         <!-- 9. FAQ Section -->
         <section id="faq" class="py-16 sm:py-24 bg-gray-50">
@@ -771,6 +860,7 @@
       <a href="#reach" class="hover:text-indigo-400">Our Reach</a>
       <a href="#events" class="hover:text-indigo-400">Events</a>
       <a href="#about" class="hover:text-indigo-400">About</a>
+      <a href="team.html" class="hover:text-indigo-400" target="_blank" rel="noopener noreferrer">Team</a>
       <a href="#newsletter" class="hover:text-indigo-400">Newsletter</a>
       <a href="#contact" class="hover:text-indigo-400">Contact</a>
       <a href="#faq" class="hover:text-indigo-400">FAQ</a>
@@ -798,11 +888,10 @@
     // 1. MOBILE MENU TOGGLE
     // =========================
     const menuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (menuButton && mobileMenu) {
+    const mobileMenuPanel = document.getElementById('mobile-menu');
+    if (menuButton && mobileMenuPanel) {
         menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenuPanel.classList.toggle('hidden');
         });
     }
 
@@ -823,20 +912,41 @@
                     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
 
+                // Chapters with separate join links
                 const chapters = [
-                    { lat: 17.3850, lng: 78.4867, city: "Hyderabad" },
-                    { lat: 12.9716, lng: 77.5946, city: "Bengaluru" }
+                    { lat: 17.3850, lng: 78.4867, name: "Hyderabad", link: "https://studentnexus.org/hyderabad" },
+                    { lat: 12.9716, lng: 77.5946, name: "Bengaluru", link: "https://studentnexus.org/bengaluru" },
                 ];
 
-                chapters.forEach(c => {
-                    L.marker([c.lat, c.lng])
-                        .addTo(map)
-                        .bindPopup(`
-                            <div class="font-bold text-lg mb-1">${c.city} Chapter</div>
-                            <a href="#" class="bg-indigo-600 text-white px-3 py-1 text-sm rounded-full hover:bg-indigo-700 transition duration-150">
-                                Join ${c.city} Chapter
-                            </a>
-                        `);
+                chapters.forEach(chapter => {
+                    const marker = L.marker([chapter.lat, chapter.lng]).addTo(map);
+
+                    const popupContent = document.createElement('div');
+                    popupContent.style.textAlign = 'center';
+
+                    const title = document.createElement('div');
+                    title.textContent = chapter.name + ' Chapter';
+                    title.style.fontWeight = 'bold';
+                    title.style.fontSize = '16px';
+                    title.style.marginBottom = '6px';
+                    popupContent.appendChild(title);
+
+                    const joinLink = document.createElement('a');
+                    joinLink.href = chapter.link;
+                    joinLink.textContent = 'Join ' + chapter.name;
+                    joinLink.style.display = 'inline-block';
+                    joinLink.style.backgroundColor = '#4f46e5'; // indigo-600
+                    joinLink.style.color = '#fff';
+                    joinLink.style.padding = '4px 10px';
+                    joinLink.style.borderRadius = '9999px'; // rounded-full
+                    joinLink.style.textDecoration = 'none';
+                    joinLink.style.fontSize = '12px';
+                    joinLink.style.transition = 'all 0.2s';
+                    joinLink.onmouseover = () => joinLink.style.backgroundColor = '#4338ca'; // indigo-700
+                    joinLink.onmouseout = () => joinLink.style.backgroundColor = '#4f46e5';
+                    popupContent.appendChild(joinLink);
+
+                    marker.bindPopup(popupContent);
                 });
 
                 const bounds = L.latLngBounds(chapters.map(c => [c.lat, c.lng]));
@@ -846,27 +956,23 @@
                 console.error('Leaflet error:', err);
                 mapDiv.className = 'relative bg-gray-100 h-96 rounded-2xl shadow-xl border-4 border-indigo-100 flex items-center justify-center';
                 mapDiv.innerHTML = `
-                    <span data-lucide="map-pin" class="w-12 h-12 text-indigo-400 absolute top-4 left-4"></span>
                     <div class="text-center">
                         <h3 class="text-2xl font-bold text-gray-700 mb-2">Interactive Chapter Map Placeholder</h3>
-                        <p class="text-gray-500">Markers for Hyderabad, Bengaluru, Pune, Delhi would appear here.</p>
-                        <a href="#" class="mt-4 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800">
-                            View Chapter List &rarr;
-                        </a>
+                        <p class="text-gray-500">Markers for all chapters will appear here.</p>
                     </div>
                 `;
             }
         }
 
         // -------------------------
-        // Newsletter Form AJAX (Prevent Refresh Warning)
+        // Newsletter Form AJAX
         // -------------------------
         const newsletterForm = document.getElementById('newsletter-form');
         const newsletterMessage = document.getElementById('newsletter-message');
 
         if (newsletterForm && newsletterMessage) {
             newsletterForm.addEventListener('submit', async e => {
-                e.preventDefault(); // Prevent default POST
+                e.preventDefault();
                 const submitButton = newsletterForm.querySelector('button[type="submit"]');
                 const originalText = submitButton.textContent;
 
@@ -884,7 +990,6 @@
 
                     if (response.ok) {
                         newsletterForm.reset();
-                        newsletterForm.classList.add('hidden');
                         newsletterMessage.classList.remove('hidden');
                         newsletterMessage.classList.remove('bg-red-100', 'text-red-800');
                         newsletterMessage.classList.add('bg-green-100', 'text-green-800');
@@ -910,14 +1015,14 @@
         }
 
         // -------------------------
-        // Contact Form AJAX (Prevent Refresh Warning)
+        // Contact Form AJAX
         // -------------------------
         const contactForm = document.getElementById('contact-form');
         const contactFeedback = document.getElementById('contact-message-feedback');
 
         if (contactForm && contactFeedback) {
             contactForm.addEventListener('submit', async e => {
-                e.preventDefault(); // Prevent default POST
+                e.preventDefault();
                 const submitButton = contactForm.querySelector('button[type="submit"]');
                 const originalText = submitButton.textContent;
 
@@ -935,7 +1040,6 @@
 
                     if (response.ok) {
                         contactForm.reset();
-                        contactForm.classList.add('hidden');
                         contactFeedback.classList.remove('hidden');
                         contactFeedback.classList.remove('bg-red-100', 'text-red-800');
                         contactFeedback.classList.add('bg-green-100', 'text-green-800');
@@ -954,10 +1058,8 @@
                     contactFeedback.textContent = 'Network error. Please try again.';
                     console.error(err);
                 } finally {
-                    if (!contactForm.classList.contains('hidden')) {
-                        submitButton.textContent = originalText;
-                        submitButton.disabled = false;
-                    }
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
                 }
             });
         }
