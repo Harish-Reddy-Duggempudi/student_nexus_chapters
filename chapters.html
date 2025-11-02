@@ -1,0 +1,240 @@
+<!-- ✅ What changed:
+    1. Map and chapter cards grid included.
+    2. Converted to a simple vertical list like the Global AI example (for reference layout).
+    3. Navbar & footer kept exactly like Student Nexus design.
+    4. Added spacing between chapter blocks for clarity.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapters Directory | Student Nexus</title>
+    <meta name="description" content="Find your local Student Nexus chapter. Browse our global community network for local events, meetups, and leadership opportunities.">
+
+    <link rel="icon" type="image/png" href="images/logo/Student-Nexus-Logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+        import { createIcons, Users, MapPin, Linkedin, Twitter, Search, BookOpen } from 'https://cdn.jsdelivr.net/npm/lucide@latest/dist/esm/lucide.js';
+        createIcons({ icons: { Users, MapPin, Linkedin, Twitter, Search, BookOpen } });
+    </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f9fafb;
+        }
+        #chapter-map-full {
+            height: 450px;
+            z-index: 1;
+        }
+        .leaflet-popup-content-wrapper { border-radius: 0.5rem; padding: 10px; }
+        .leaflet-popup-content { text-align: center; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Student Nexus Navbar -->
+    <nav class="sticky top-0 z-[9999] bg-white shadow-md pt-[env(safe-area-inset-top)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex-shrink-0 flex items-center space-x-3">
+                    <span class="inline-flex items-center justify-center w-12 h-12 rounded-full overflow-hidden">
+                        <img src="images/logo/Student-Nexus-Logo.png" alt="Student Nexus logo" class="w-full h-full object-cover">
+                    </span>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-extrabold text-indigo-800" style="font-family: 'Montserrat', sans-serif;">Student Nexus</span>
+                        <span class="text-sm text-black" style="font-family: 'Montserrat', sans-serif;">Chapters</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="#" class="text-indigo-600 font-bold px-3 py-2 rounded-md text-sm transition duration-150 border-b-2 border-indigo-600">Chapters</a>
+                    <a href="index.html#events" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Events</a>
+                    <a href="index.html#about" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">About Us</a>
+                    <a href="index.html#contact" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition duration-150 shadow-md">Join Community</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <span class="sr-only">Open chapters menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#" class="block bg-indigo-500 text-white text-center mt-1 px-3 py-2 rounded-lg text-base font-semibold">Chapters</a>
+                <a href="index.html#events" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Events</a>
+                <a href="index.html#about" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">About Us</a>
+                <a href="index.html#contact" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="chapters-hero" class="bg-indigo-700 text-white py-16 sm:py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
+                    Our <span class="text-indigo-200">Global Chapters</span> Directory
+                </h1>
+                <p class="mt-3 max-w-3xl mx-auto text-lg text-indigo-200">
+                    A local branch that operates under the broader umbrella of the Student Nexus Community.
+                </p>
+                <div class="mt-6">
+                    <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-indigo-700 bg-white hover:bg-indigo-100 transition duration-300 transform hover:scale-105">
+                        Start your own chapter
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section id="visual-directory" class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div id="chapter-map-full" class="rounded-2xl shadow-xl border-4 border-indigo-100 mb-16"></div>
+
+                <div class="lg:text-center mb-12">
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        Featured Chapter Hubs
+                    </p>
+                </div>
+
+                <div id="chapter-cards-grid" class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Cards injected via JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Student Nexus Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex flex-col items-center space-y-2">
+                <img src="images/logo/Student-Nexus-Logo.png" alt="Student Nexus logo" class="h-24 w-auto mb-2 rounded-xl shadow-lg bg-white p-0.5" loading="lazy">
+                <p class="text-lg text-white tracking-wider font-extrabold" style="font-family: 'Montserrat', sans-serif;">Student Nexus</p>
+                <span class="text-sm text-gray-400 tracking-wider" style="font-family: 'Montserrat', sans-serif;">Global Student Community</span>
+            </div>
+
+            <div class="flex justify-center space-x-6 mt-6">
+                <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-150"><i data-lucide="instagram" class="h-6 w-6"></i></a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-150"><i data-lucide="linkedin" class="h-6 w-6"></i></a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-150"><i data-lucide="twitter" class="h-6 w-6"></i></a>
+            </div>
+
+            <nav class="flex flex-wrap justify-center mt-6 space-x-6 text-sm font-medium" style="font-family: 'Poppins', sans-serif;">
+                <a href="index.html" class="hover:text-indigo-400">Home</a>
+                <a href="#" class="hover:text-indigo-400 text-indigo-400">Chapters</a>
+                <a href="index.html#events" class="hover:text-indigo-400">Events</a>
+                <a href="index.html#about" class="hover:text-indigo-400">About</a>
+                <a href="index.html#contact" class="hover:text-indigo-400">Contact</a>
+            </nav>
+
+            <p class="mt-8 text-center text-gray-400 text-sm">
+                &copy; 2025 – <span id="current-year-chapters"></span> <span class="font-semibold text-white">Student Nexus</span>. 
+                For students, by students, everywhere ❤️
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.getElementById("current-year-chapters").textContent = new Date().getFullYear();
+
+        const studentNexusChapters = [
+            { name: "Hyderabad", city: "Hyderabad", country: "India", link: "#", lat: 17.3850, lng: 78.4867, img: "https://placehold.co/400x200/4f46e5/ffffff?text=HYD" },
+            { name: "Bengaluru", city: "Bengaluru", country: "India", link: "#", lat: 12.9716, lng: 77.5946, img: "https://placehold.co/400x200/0ea5e9/ffffff?text=BGL" },
+            { name: "Toronto", city: "Toronto", country: "Canada", link: "#", lat: 43.6532, lng: -79.3832, img: "https://placehold.co/400x200/f97316/ffffff?text=TOR" },
+            { name: "London", city: "London", country: "United Kingdom", link: "#", lat: 51.5074, lng: -0.1278, img: "https://placehold.co/400x200/6366f1/ffffff?text=LON" },
+            { name: "Sydney", city: "Sydney", country: "Australia", link: "#", lat: -33.8688, lng: 151.2093, img: "https://placehold.co/400x200/4ade80/ffffff?text=SYD" },
+            { name: "Dubai", city: "Dubai", country: "UAE", link: "#", lat: 25.276987, lng: 55.296249, img: "https://placehold.co/400x200/fbbf24/ffffff?text=DXB" },
+        ];
+
+        // Leaflet Map
+        const map = L.map('chapter-map-full').setView([20, 0], 2.5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        const markerCoords = [];
+        studentNexusChapters.forEach(chapter => {
+            const latLng = [chapter.lat, chapter.lng];
+            markerCoords.push(latLng);
+
+            const popupContent = document.createElement('div');
+            popupContent.innerHTML = `
+                <p class="font-bold text-gray-800">${chapter.name} Chapter</p>
+                <a href="${chapter.link}" target="_blank" class="inline-block mt-2 text-xs text-white bg-indigo-600 px-3 py-1 rounded-full hover:bg-indigo-700">
+                    View Chapter
+                </a>
+            `;
+
+            L.marker(latLng).addTo(map)
+                .bindPopup(popupContent);
+        });
+
+        if (markerCoords.length > 0) {
+            const bounds = L.latLngBounds(markerCoords);
+            map.fitBounds(bounds, { padding: [50, 50] });
+        }
+
+        // Chapter Cards Grid
+        const cardGrid = document.getElementById('chapter-cards-grid');
+        studentNexusChapters.forEach(chapter => {
+            const cardHTML = `
+                <div class="bg-white rounded-xl shadow-xl ring-2 ring-gray-100 transition duration-300 hover:shadow-2xl hover:ring-indigo-400">
+                    <div class="overflow-hidden rounded-t-xl h-40 relative">
+                        <img src="${chapter.img}" alt="${chapter.city} city image" class="w-full h-full object-cover opacity-80">
+                        <div class="absolute top-0 left-0 w-full h-full bg-indigo-900/10"></div>
+                        <div class="absolute bottom-0 w-full text-center p-3">
+                           <h5 class="text-white text-xl font-extrabold bg-black/40 inline-block px-3 py-1 rounded-lg">Student Nexus ${chapter.name}</h5>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-orange-600 text-white mb-3">
+                            Official Chapter
+                        </span>
+                        
+                        <h4 class="text-xl font-extrabold text-gray-900 mb-1">${chapter.city}</h4>
+                        
+                        <div class="flex items-center text-sm text-gray-500 mb-4">
+                            <span data-lucide="map-pin" class="w-4 h-4 mr-1 flex-shrink-0"></span> ${chapter.city} / ${chapter.country}
+                        </div>
+                        
+                        <a href="${chapter.link}" class="inline-flex items-center justify-center w-full px-4 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150 shadow-md mt-2">
+                            View chapter
+                        </a>
+                    </div>
+                </div>
+            `;
+            cardGrid.insertAdjacentHTML('beforeend', cardHTML);
+        });
+
+        // Mobile menu toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                menuButton.setAttribute('aria-expanded', !isHidden);
+            });
+        }
+    </script>
+</body>
+</html>

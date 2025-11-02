@@ -278,6 +278,8 @@
 
     updateCount();
   });
+
+  
 </script>
 
                 <!-- End Stats Grid -->
@@ -289,102 +291,71 @@
                     </div>
 
                     <!-- Enhanced Chapter Cards (MATCHING NEW STYLE) -->
-                    <h3 class="mt-16 text-2xl font-bold text-gray-900 text-center mb-8">Featured Local Chapters</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        
-                        <!-- Chapter Card 1 (Hyderabad) -->
-                        <div class="bg-white rounded-xl shadow-2xl ring-2 ring-gray-100 transition duration-300 hover:shadow-3xl hover:ring-indigo-400 col-span-1">
-                            <!-- Image Section (Larger and more prominent) -->
-                            <div class="overflow-hidden rounded-t-xl h-48 bg-indigo-500 relative">
-                                <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/hyderabad-cityscape-travel-poster-inspirowl-design.jpg" alt="Hyderabad city skyline representing the chapter" class="w-full h-full object-cover opacity-80">
-                                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                                    <h5 class="text-white text-2xl font-extrabold"></h5>
-                                </div>
-                            </div>
-                            
-                            <!-- Content Section -->
-                            <div class="p-5">
-                                <!-- Badge -->
-                                <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-orange-600 text-white mb-3">
-                                    Official Chapter
-                                </span>
-                                
-                                <h4 class="text-2xl font-extrabold text-gray-900 mb-1">Student Nexus Hyderabad</h4>
-                                <div class="flex items-center text-sm text-gray-500 mb-4">
-                                    <span data-lucide="map-pin" class="w-4 h-4 mr-1 flex-shrink-0"></span> Hyderabad / India
-                                </div>
-                                
-                                <!-- Leader Profile Section -->
-                                <div class="border-t pt-3 mt-3 border-gray-100 flex items-center justify-between bg-indigo-50 p-3 rounded-lg">
-                                    <div class="flex items-center space-x-3">
-                                        <img src="https://placehold.co/40x40/4f46e5/ffffff/png?text=JD" alt="Leader Profile" class="w-10 h-10 rounded-full object-cover border-2 border-indigo-300">
-                                        <div>
-                                            <p class="text-xs font-semibold text-gray-800">Harish R. Duggempudi</p>
-                                            <p class="text-xs text-gray-600">Chapter Lead</p>
-                                        </div>
-                                    </div>
-                                    <a href="#" target="_blank" aria-label="Harish's LinkedIn" class="text-indigo-600 hover:text-indigo-800 transition">
-                                        <span data-lucide="linkedin" class="w-5 h-5"></span>
-                                    </a>
-                                </div>
-                                
-                                <a href="#" class="inline-flex items-center justify-center w-full px-4 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-orange-600 hover:bg-orange-700 transition duration-150 shadow-md mt-4">
-                                    View chapter
-                                </a>
-                            </div>
-                        </div>
+<!-- Enhanced Chapter Cards -->
+<h3 class="mt-16 text-2xl font-bold text-gray-900 text-center mb-8">Featured Local Chapters</h3>
+<div class="flex flex-wrap justify-center gap-6 px-4">
 
-                        <!-- Chapter Card 2 (Bengaluru) -->
-                        <div class="bg-white rounded-xl shadow-2xl ring-2 ring-gray-100 transition duration-300 hover:shadow-3xl hover:ring-indigo-400 col-span-1">
-                            <!-- Image Section (Larger and more prominent) -->
-                            <div class="overflow-hidden rounded-t-xl h-48 bg-cyan-500 relative">
-                                <img src="https://previews.123rf.com/images/sezgen/sezgen1805/sezgen180500033/101622821-vector-panoramic-hand-drawing-sketch-style-bangalore-city-illustration.jpg" alt="Bengaluru tech park representing the chapter" class="w-full h-full object-cover opacity-80">
-                                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                                    <h5 class="text-white text-2xl font-extrabold"></h5>
-                                </div>
-                            </div>
-                            <!-- Content Section -->
-                            <div class="p-5">
-                                <!-- Badge -->
-                                <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-orange-600 text-white mb-3">
-                                    Official Chapter
-                                </span>
-                                
-                                <h4 class="text-2xl font-extrabold text-gray-900 mb-1">Student Nexus Bengaluru</h4>
-                                <div class="flex items-center text-sm text-gray-500 mb-4">
-                                    <span data-lucide="map-pin" class="w-4 h-4 mr-1 flex-shrink-0"></span> Bengaluru / India
-                                </div>
+  <!-- Chapter Card 1 (Hyderabad) -->
+  <div class="bg-white rounded-xl shadow-2xl ring-2 ring-gray-100 transition duration-300 hover:shadow-3xl hover:ring-indigo-400 w-80">
+    <div class="overflow-hidden rounded-t-xl h-48 bg-indigo-500 relative">
+      <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/hyderabad-cityscape-travel-poster-inspirowl-design.jpg" alt="Hyderabad city skyline" class="w-full h-full object-cover opacity-80">
+    </div>
+    <div class="p-5">
+      <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-orange-600 text-white mb-3">Official Chapter</span>
+      <h4 class="text-2xl font-extrabold text-gray-900 mb-1">Student Nexus Hyderabad</h4>
+      <div class="flex items-center text-sm text-gray-500 mb-4">
+        <span data-lucide="map-pin" class="w-4 h-4 mr-1 flex-shrink-0"></span> Hyderabad / India
+      </div>
+      <div class="border-t pt-3 mt-3 border-gray-100 flex items-center justify-between bg-indigo-50 p-3 rounded-lg">
+        <div class="flex items-center space-x-3">
+          <img src="https://placehold.co/40x40/4f46e5/ffffff/png?text=JD" alt="Leader Profile" class="w-10 h-10 rounded-full object-cover border-2 border-indigo-300">
+          <div>
+            <p class="text-xs font-semibold text-gray-800">Harish R. Duggempudi</p>
+            <p class="text-xs text-gray-600">Chapter Lead</p>
+          </div>
+        </div>
+        <a href="#" target="_blank" aria-label="Harish's LinkedIn" class="text-indigo-600 hover:text-indigo-800 transition">
+          <span data-lucide="linkedin" class="w-5 h-5"></span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-                                <!-- Leader Profile Section -->
-                                <div class="border-t pt-3 mt-3 border-gray-100 flex items-center justify-between bg-indigo-50 p-3 rounded-lg">
-                                    <div class="flex items-center space-x-3">
-                                        <img src="https://placehold.co/40x40/0ea5e9/ffffff/png?text=MS" alt="Leader Profile" class="w-10 h-10 rounded-full object-cover border-2 border-cyan-300">
-                                        <div>
-                                            <p class="text-xs font-semibold text-gray-800">Manya S. Gowda</p>
-                                            <p class="text-xs text-gray-600">Chapter Lead</p>
-                                        </div>
-                                    </div>
-                                    <a href="#" target="_blank" aria-label="Manya's LinkedIn" class="text-indigo-600 hover:text-indigo-800 transition">
-                                        <span data-lucide="linkedin" class="w-5 h-5"></span>
-                                    </a>
-                                </div>
+  <!-- Chapter Card 2 (Bengaluru) -->
+  <div class="bg-white rounded-xl shadow-2xl ring-2 ring-gray-100 transition duration-300 hover:shadow-3xl hover:ring-indigo-400 w-80">
+    <div class="overflow-hidden rounded-t-xl h-48 bg-cyan-500 relative">
+      <img src="https://previews.123rf.com/images/sezgen/sezgen1805/sezgen180500033/101622821-vector-panoramic-hand-drawing-sketch-style-bangalore-city-illustration.jpg" alt="Bengaluru tech park" class="w-full h-full object-cover opacity-80">
+    </div>
+    <div class="p-5">
+      <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-orange-600 text-white mb-3">Official Chapter</span>
+      <h4 class="text-2xl font-extrabold text-gray-900 mb-1">Student Nexus Bengaluru</h4>
+      <div class="flex items-center text-sm text-gray-500 mb-4">
+        <span data-lucide="map-pin" class="w-4 h-4 mr-1 flex-shrink-0"></span> Bengaluru / India
+      </div>
+      <div class="border-t pt-3 mt-3 border-gray-100 flex items-center justify-between bg-indigo-50 p-3 rounded-lg">
+        <div class="flex items-center space-x-3">
+          <img src="https://placehold.co/40x40/0ea5e9/ffffff/png?text=MS" alt="Leader Profile" class="w-10 h-10 rounded-full object-cover border-2 border-cyan-300">
+          <div>
+            <p class="text-xs font-semibold text-gray-800">Manya S. Gowda</p>
+            <p class="text-xs text-gray-600">Chapter Lead</p>
+          </div>
+        </div>
+        <a href="#" target="_blank" aria-label="Manya's LinkedIn" class="text-indigo-600 hover:text-indigo-800 transition">
+          <span data-lucide="linkedin" class="w-5 h-5"></span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-                                <a href="#" class="inline-flex items-center justify-center w-full px-4 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-orange-600 hover:bg-orange-700 transition duration-150 shadow-md mt-4">
-                                    View chapter
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- Placeholder Card for future chapters (Used remaining 2 columns of the 4-column grid) -->
-                        <div class="hidden sm:block lg:col-span-2">
-                             <div class="bg-gray-100 p-6 rounded-xl shadow-inner border-dashed border-2 border-gray-300 flex items-center justify-center h-full">
-                                 <p class="text-gray-500 text-center font-medium">More chapters coming soon across India!</p>
-                             </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
+</div>
+
+<!-- Know More Button -->
+<div class="mt-8 text-center">
+  <a href="chapters.html" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-orange-600 hover:bg-orange-700 transition duration-150 shadow-md">
+    Know More
+  </a>
+</div>
+
         </section>
         
         <!-- 3. Events Section (Upcoming and Past) -->
