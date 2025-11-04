@@ -1,234 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Events | Student Nexus</title>
-<meta name="description" content="Explore the upcoming and past events organized by the Student Nexus community. Join workshops, webinars, and local meetups to level up your skills.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events | Student Nexus</title>
+  <meta name="description" content="Explore upcoming and past events organized by the Student Nexus community. Join workshops, hackathons, and meetups across India.">
 
-<link rel="icon" type="image/png" href="https://placehold.co/32x32/4f46e5/ffffff?text=SN"> 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo/Student-Nexus-Logo.png">
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Lucide Icons -->
-<script type="module">
-import { createIcons, Users, MapPin, Linkedin, Twitter, Calendar, ArrowRight, Instagram } from 'https://cdn.jsdelivr.net/npm/lucide@latest/dist/esm/lucide.js';
-createIcons({ icons: { Users, MapPin, Linkedin, Twitter, Calendar, ArrowRight, Instagram } });
-</script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<style>
-body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #f9fafb; }
-.text-gradient { background-image: linear-gradient(to right, #4f46e5, #0ea5e9); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-#event-map { height: 24rem; width: 100%; border-radius: 1rem; }
-</style>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #f9fafb;
+    }
+    .brand-font {
+      font-family: 'Montserrat', sans-serif;
+    }
+    #event-map {
+      height: 400px;
+      border-radius: 1rem;
+      border: 4px solid #e0e7ff;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.15);
+    }
+    .leaflet-popup-content-wrapper {
+      border-radius: 0.75rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .map-legend {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.75rem;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-size: 0.875rem;
+      color: #374151;
+    }
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+  </style>
 </head>
+
 <body class="text-gray-800">
 
-<!-- NAVBAR -->
-<nav class="sticky top-0 z-50 bg-white shadow-md">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
+  <!-- NAVBAR (same as main site) -->
+  <nav class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
       <a href="index.html" class="flex items-center space-x-3">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-full overflow-hidden">
-          <img src="images/logo/Student-Nexus-Logo.png" alt="Student Nexus logo" class="w-full h-full object-cover">
-        </span>
+        <img src="images/logo/Student-Nexus-Logo.png" alt="Logo" class="w-12 h-12 rounded-full">
         <div class="flex flex-col">
-          <span class="text-2xl font-extrabold text-indigo-800" style="font-family: 'Montserrat', sans-serif;">Student Nexus</span>
-          <span class="text-sm text-black" style="font-family: 'Montserrat', sans-serif;">Events & Workshops</span>
+          <span class="text-2xl font-extrabold text-indigo-800 brand-font">Student Nexus</span>
+          <span class="text-sm text-black brand-font">Global Student Community</span>
         </div>
       </a>
 
-      <div class="hidden md:flex items-center space-x-4">
-        <a href="index.html" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition">Home</a>
-        <a href="#upcoming-events" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition">Upcoming</a>
-        <a href="#past-events" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition">Past Events</a>
-        <a href="#map" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition shadow-md">Host an Event</a>
-      </div>
-
-      <div class="md:hidden flex items-center">
-        <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-indigo-500 focus:outline-none">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="index.html" class="text-gray-700 hover:text-indigo-600">Home</a>
+        <a href="chapters.html" class="text-gray-700 hover:text-indigo-600">Chapters</a>
+        <a href="#" class="text-indigo-600 font-semibold border-b-2 border-indigo-600">Events</a>
+        <a href="index.html#about" class="text-gray-700 hover:text-indigo-600">About</a>
+        <a href="index.html#contact" class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">Join Community</a>
       </div>
     </div>
-  </div>
+  </nav>
 
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <a href="index.html" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Home</a>
-      <a href="#upcoming-events" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Upcoming</a>
-      <a href="#past-events" class="block text-gray-800 hover:bg-indigo-100 px-3 py-2 rounded-md text-base font-medium">Past Events</a>
-      <a href="#map" class="block bg-indigo-500 text-white text-center mt-2 px-3 py-2 mx-2 rounded-lg text-base font-semibold hover:bg-indigo-600">Host an Event</a>
+  <!-- HERO SECTION -->
+  <section class="bg-gray-50 py-16 text-center">
+    <h2 class="text-4xl sm:text-5xl font-extrabold text-gray-900 brand-font">Explore Upcoming & Past Events</h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Discover exciting workshops, hackathons, and sessions hosted by Student Nexus across India.</p>
+    <div class="mt-8 flex justify-center space-x-4">
+      <a href="#upcoming-events" class="px-6 py-3 bg-indigo-600 text-white rounded-full font-semibold hover:bg-indigo-700 transition shadow-lg">View Upcoming</a>
+      <a href="#past-events" class="px-6 py-3 bg-orange-500 text-white rounded-full font-semibold hover:bg-orange-600 transition shadow-lg">Past Highlights</a>
     </div>
-  </div>
-</nav>
+  </section>
 
-<script>
-const menuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-</script>
-
-<!-- MAP SECTION -->
-<section id="map" class="py-16 sm:py-24 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase text-center">Event Locations</h2>
-    <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 text-center sm:text-4xl mb-8">Where We Make Impact</p>
-    <div id="event-map" class="w-full min-h-[24rem] shadow-inner rounded-xl"></div>
-  </div>
-</section>
-
-<!-- UPCOMING EVENTS -->
-<section id="upcoming-events" class="py-16 sm:py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="lg:text-center mb-12">
-      <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">What's Next</h2>
-      <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Upcoming Events</p>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Event cards repeated like before -->
-      <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-indigo-500 flex flex-col justify-between">
-        <div>
-          <p class="text-sm text-gray-500 flex items-center mb-2"><span data-lucide="calendar" class="w-4 h-4 mr-1"></span> Nov 10, 2025</p>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">AI & ML Workshop</h3>
-          <p class="text-gray-600 mb-4">Hands-on session on AI/ML basics, tools, and real-world applications for students.</p>
+  <!-- MAP SECTION -->
+  <section class="py-16 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h3 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Event Locations</h3>
+      <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl mb-8 brand-font">Where We Make Impact</p>
+      <div class="max-w-4xl mx-auto relative">
+        <div id="event-map"></div>
+        <div class="map-legend">
+          <span><span class="legend-dot" style="background-color:#4f46e5;"></span>Upcoming</span>
+          <span class="ml-3"><span class="legend-dot" style="background-color:#f97316;"></span>Past</span>
         </div>
-        <a href="#" class="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 bg-indigo-100 px-4 py-2 rounded-full transition duration-150">
-          Join Now <span data-lucide="arrow-right" class="w-4 h-4 ml-1"></span>
-        </a>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 flex flex-col justify-between">
-        <div>
-          <p class="text-sm text-gray-500 flex items-center mb-2"><span data-lucide="calendar" class="w-4 h-4 mr-1"></span> Nov 20, 2025</p>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Web Development Bootcamp</h3>
-          <p class="text-gray-600 mb-4">Learn full-stack development in a practical, project-based session with Student Nexus mentors.</p>
-        </div>
-        <a href="#" class="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-800 bg-orange-100 px-4 py-2 rounded-full transition duration-150">
-          Join Now <span data-lucide="arrow-right" class="w-4 h-4 ml-1"></span>
-        </a>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500 flex flex-col justify-between">
-        <div>
-          <p class="text-sm text-gray-500 flex items-center mb-2"><span data-lucide="calendar" class="w-4 h-4 mr-1"></span> Dec 05, 2025</p>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Hackathon 2025</h3>
-          <p class="text-gray-600 mb-4">Collaborate with peers and industry mentors in a 24-hour coding marathon.</p>
-        </div>
-        <a href="#" class="inline-flex items-center text-sm font-semibold text-green-600 hover:text-green-800 bg-green-100 px-4 py-2 rounded-full transition duration-150">
-          Register <span data-lucide="arrow-right" class="w-4 h-4 ml-1"></span>
-        </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PAST EVENTS -->
-<section id="past-events" class="py-16 sm:py-24 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="lg:text-center mb-12">
-      <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">What We Did</h2>
-      <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Past Events</p>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Past Event cards -->
-      <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-500 flex flex-col justify-between">
-        <div>
-          <p class="text-sm text-gray-500 flex items-center mb-2"><span data-lucide="calendar" class="w-4 h-4 mr-1"></span> Oct 12, 2025</p>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Cloud Workshop</h3>
-          <p class="text-gray-600 mb-4">Interactive session on cloud computing fundamentals and practical applications.</p>
-        </div>
-        <a href="#" class="inline-flex items-center text-sm font-semibold text-gray-700 hover:text-gray-900 bg-gray-100 px-4 py-2 rounded-full transition duration-150">
-          View Details <span data-lucide="arrow-right" class="w-4 h-4 ml-1"></span>
-        </a>
+  <!-- UPCOMING EVENTS -->
+  <section id="upcoming-events" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:text-center mb-12">
+        <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">What's Next</h2>
+        <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl brand-font">Upcoming Events</p>
       </div>
-      <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-500 flex flex-col justify-between">
-        <div>
-          <p class="text-sm text-gray-500 flex items-center mb-2"><span data-lucide="calendar" class="w-4 h-4 mr-1"></span> Sep 18, 2025</p>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Tech Quiz 2025</h3>
-          <p class="text-gray-600 mb-4">Engaging quiz event testing students’ technical knowledge with prizes.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-indigo-500">
+          <p class="text-sm text-gray-500 mb-2">📅 Nov 10, 2025</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 brand-font">AI & ML Workshop</h3>
+          <p class="text-gray-600 mb-4">Hands-on session on AI/ML basics, tools, and real-world applications.</p>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 bg-indigo-100 px-4 py-2 rounded-full transition">Join Now →</a>
         </div>
-        <a href="#" class="inline-flex items-center text-sm font-semibold text-gray-700 hover:text-gray-900 bg-gray-100 px-4 py-2 rounded-full transition duration-150">
-          View Details <span data-lucide="arrow-right" class="w-4 h-4 ml-1"></span>
-        </a>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-500 flex flex-col justify-between">
-        <div>
-          <p class="text-sm text-gray-500 flex items-center mb-2"><span data-lucide="calendar" class="w-4 h-4 mr-1"></span> Aug 25, 2025</p>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">GitHub Workshop</h3>
-          <p class="text-gray-600 mb-4">Hands-on GitHub and version control workshop for students and beginners.</p>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500">
+          <p class="text-sm text-gray-500 mb-2">📅 Nov 20, 2025</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 brand-font">Web Development Bootcamp</h3>
+          <p class="text-gray-600 mb-4">Learn full-stack development in a practical, project-based session.</p>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-800 bg-orange-100 px-4 py-2 rounded-full transition">Join Now →</a>
         </div>
-        <a href="#" class="inline-flex items-center text-sm font-semibold text-gray-700 hover:text-gray-900 bg-gray-100 px-4 py-2 rounded-full transition duration-150">
-          View Details <span data-lucide="arrow-right" class="w-4 h-4 ml-1"></span>
-        </a>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500">
+          <p class="text-sm text-gray-500 mb-2">📅 Dec 05, 2025</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 brand-font">Hackathon 2025</h3>
+          <p class="text-gray-600 mb-4">Collaborate with peers and mentors in a 24-hour coding marathon.</p>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-green-600 hover:text-green-800 bg-green-100 px-4 py-2 rounded-full transition">Register →</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer class="bg-gray-900 text-gray-300">
-  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
-    <div class="flex flex-col items-center space-y-2">
-      <img src="images/logo/Student-Nexus-Logo.png" alt="Student Nexus logo" class="h-24 w-auto mb-2 rounded-xl shadow-lg bg-white p-0.5" loading="lazy">
-      <p class="text-lg text-white tracking-wider font-extrabold" style="font-family: 'Montserrat', sans-serif;">Student Nexus</p>
-      <span class="text-sm text-gray-400 tracking-wider" style="font-family: 'Montserrat', sans-serif;">Global Student Community</span>
+  <!-- PAST EVENTS -->
+  <section id="past-events" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:text-center mb-12">
+        <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">What We Did</h2>
+        <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl brand-font">Past Events</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-gray-400">
+          <p class="text-sm text-gray-500 mb-2">📅 Oct 12, 2025</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 brand-font">Cloud Workshop</h3>
+          <p class="text-gray-600 mb-4">Interactive session on cloud fundamentals and applications.</p>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-gray-700 hover:text-gray-900 bg-gray-100 px-4 py-2 rounded-full transition">View Details →</a>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-gray-400">
+          <p class="text-sm text-gray-500 mb-2">📅 Sep 18, 2025</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 brand-font">Tech Quiz 2025</h3>
+          <p class="text-gray-600 mb-4">Fun quiz event testing technical knowledge with exciting prizes.</p>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-gray-700 hover:text-gray-900 bg-gray-100 px-4 py-2 rounded-full transition">View Details →</a>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-gray-400">
+          <p class="text-sm text-gray-500 mb-2">📅 Aug 25, 2025</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 brand-font">GitHub Workshop</h3>
+          <p class="text-gray-600 mb-4">Hands-on GitHub and version control workshop for beginners.</p>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-gray-700 hover:text-gray-900 bg-gray-100 px-4 py-2 rounded-full transition">View Details →</a>
+        </div>
+      </div>
     </div>
-    <div class="flex justify-center space-x-6 mt-6">
-      <a href="#" class="text-gray-400 hover:text-indigo-400 transition" aria-label="Instagram"><i data-lucide="instagram" class="h-6 w-6"></i></a>
-      <a href="#" class="text-gray-400 hover:text-indigo-400 transition" aria-label="LinkedIn"><i data-lucide="linkedin" class="h-6 w-6"></i></a>
-      <a href="#" class="text-gray-400 hover:text-indigo-400 transition" aria-label="Twitter"><i data-lucide="twitter" class="h-6 w-6"></i></a>
+  </section>
+
+  <!-- FOOTER (same as main site) -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+      <div class="flex flex-col items-center space-y-2">
+        <img src="images/logo/Student-Nexus-Logo.png" alt="Student Nexus Logo" class="h-24 w-auto mb-2 rounded-xl shadow-lg bg-white p-0.5" loading="lazy">
+        <p class="text-lg text-white tracking-wider font-extrabold brand-font">Student Nexus</p>
+        <span class="text-sm text-gray-400 tracking-wider brand-font">Global Student Community</span>
+      </div>
+
+      <div class="flex justify-center space-x-6 mt-6">
+        <a href="#" class="text-gray-400 hover:text-indigo-400 transition"><i data-lucide="instagram" class="h-6 w-6"></i></a>
+        <a href="#" class="text-gray-400 hover:text-indigo-400 transition"><i data-lucide="linkedin" class="h-6 w-6"></i></a>
+        <a href="#" class="text-gray-400 hover:text-indigo-400 transition"><i data-lucide="twitter" class="h-6 w-6"></i></a>
+      </div>
+
+      <nav class="flex flex-wrap justify-center mt-6 space-x-6 text-sm font-medium">
+        <a href="index.html" class="hover:text-indigo-400">Home</a>
+        <a href="chapters.html" class="hover:text-indigo-400">Chapters</a>
+        <a href="#" class="text-indigo-400">Events</a>
+        <a href="index.html#about" class="hover:text-indigo-400">About</a>
+        <a href="index.html#contact" class="hover:text-indigo-400">Contact</a>
+      </nav>
+
+      <p class="mt-8 text-center text-gray-400 text-sm">&copy; 2025 – <span class="font-semibold text-white">Student Nexus</span>. For students, by students, everywhere ❤️</p>
     </div>
-    <p class="mt-8 text-center text-gray-400 text-sm">&copy; 2025 – <span id="current-year-events"></span> <span class="font-semibold text-white">Student Nexus</span>. For students, by students, everywhere ❤️</p>
-  </div>
-</footer>
+  </footer>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <!-- MAP SCRIPT -->
+  <script>
+    lucide.createIcons();
+    document.addEventListener("DOMContentLoaded", function() {
+      const map = L.map('event-map').setView([17.4428, 78.4507], 11);
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const map = L.map('event-map').setView([17.4428, 78.4507], 12);
-  map.invalidateSize();
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
+      const upcomingIcon = L.icon({
+        iconUrl: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32]
+      });
 
-  const upcomingIcon = L.icon({ iconUrl: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png', iconSize: [32, 32], iconAnchor: [16, 32] });
-  const pastIcon = L.icon({ iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png', iconSize: [32, 32], iconAnchor: [16, 32] });
+      const pastIcon = L.icon({
+        iconUrl: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32]
+      });
 
-  const upcomingEvents = [
-    { name: "AI & ML Workshop", date: "Nov 10, 2025", coords: [17.4430, 78.4480], link: "#" },
-    { name: "Web Development Bootcamp", date: "Nov 20, 2025", coords: [17.4400, 78.4550], link: "#" },
-    { name: "Hackathon 2025", date: "Dec 05, 2025", coords: [17.4500, 78.4600], link: "#" }
-  ];
-  upcomingEvents.forEach(e => {
-    L.marker(e.coords, { icon: upcomingIcon })
-      .addTo(map)
-      .bindPopup(`<b>${e.name}</b><br>${e.date}<br><a href="${e.link}" target="_blank" class="text-blue-600 underline">Join/Register</a>`);
-  });
+      const upcoming = [
+        { name: "AI & ML Workshop", date: "Nov 10, 2025", coords: [17.443, 78.448], link: "#" },
+        { name: "Web Development Bootcamp", date: "Nov 20, 2025", coords: [17.44, 78.455], link: "#" },
+        { name: "Hackathon 2025", date: "Dec 05, 2025", coords: [17.45, 78.46], link: "#" }
+      ];
 
-  const pastEvents = [
-    { name: "Cloud Workshop", date: "Oct 12, 2025", coords: [17.4450, 78.4520], link: "#" },
-    { name: "Tech Quiz 2025", date: "Sep 18, 2025", coords: [17.4410, 78.4490], link: "#" },
-    { name: "GitHub Workshop", date: "Aug 25, 2025", coords: [17.4460, 78.4580], link: "#" }
-  ];
-  pastEvents.forEach(e => {
-    L.marker(e.coords, { icon: pastIcon })
-      .addTo(map)
-      .bindPopup(`<b>${e.name}</b><br>${e.date}<br><a href="${e.link}" target="_blank" class="text-red-600 underline">View Details</a>`);
-  });
-});
-</script>
+      const past = [
+        { name: "Cloud Workshop", date: "Oct 12, 2025", coords: [17.445, 78.452], link: "#" },
+        { name: "Tech Quiz 2025", date: "Sep 18, 2025", coords: [17.441, 78.449], link: "#" },
+        { name: "GitHub Workshop", date: "Aug 25, 2025", coords: [17.446, 78.458], link: "#" }
+      ];
+
+      upcoming.forEach(e => {
+        L.marker(e.coords, { icon: upcomingIcon })
+          .addTo(map)
+          .bindPopup(`<b style="color:#4f46e5;">${e.name}</b><br>${e.date}<br><a href="${e.link}" target="_blank" style="color:#4f46e5;text-decoration:underline;">Join/Register</a>`);
+      });
+
+      past.forEach(e => {
+        L.marker(e.coords, { icon: pastIcon })
+          .addTo(map)
+          .bindPopup(`<b style="color:#f97316;">${e.name}</b><br>${e.date}<br><a href="${e.link}" target="_blank" style="color:#f97316;text-decoration:underline;">View Details</a>`);
+      });
+
+      const allCoords = [...upcoming, ...past].map(e => e.coords);
+      map.fitBounds(allCoords, { padding: [40, 40] });
+    });
+  </script>
 
 </body>
 </html>
