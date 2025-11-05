@@ -218,19 +218,42 @@
       attribution: '© <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
     }).addTo(map);
 
-    const blueMarker = L.icon({
-      iconUrl: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-      iconSize: [32, 32],
-      iconAnchor: [16, 32]
-    });
-
     const coords = [];
-    chapters.forEach(ch => {
-      L.marker([ch.lat, ch.lng], { icon: blueMarker })
-        .addTo(map)
-        .bindPopup(`<strong>${ch.name} Chapter</strong><br><a href="${ch.link}" target="_blank" class="text-indigo-600 underline">View Chapter</a>`);
-      coords.push([ch.lat, ch.lng]);
-    });
+chapters.forEach(ch => {
+  const marker = L.marker([ch.lat, ch.lng]).addTo(map);
+
+  // Popup styled same as homepage
+  const popupContent = document.createElement('div');
+  popupContent.style.textAlign = 'center';
+
+  const title = document.createElement('div');
+  title.textContent = `${ch.name} Chapter`;
+  title.style.fontWeight = 'bold';
+  title.style.fontSize = '16px';
+  title.style.marginBottom = '6px';
+  popupContent.appendChild(title);
+
+  const joinLink = document.createElement('a');
+  joinLink.href = ch.link;
+  joinLink.textContent = 'Join ' + ch.name;
+  joinLink.style.display = 'inline-block';
+  joinLink.style.backgroundColor = '#4f46e5'; // indigo-600
+  joinLink.style.color = '#fff';
+  joinLink.style.padding = '4px 10px';
+  joinLink.style.borderRadius = '9999px'; // rounded-full (pill)
+  joinLink.style.textDecoration = 'none';
+  joinLink.style.fontSize = '12px';
+  joinLink.style.transition = 'all 0.2s';
+  joinLink.onmouseover = () => joinLink.style.backgroundColor = '#4338ca'; // darker indigo
+  joinLink.onmouseout = () => joinLink.style.backgroundColor = '#4f46e5';
+  popupContent.appendChild(joinLink);
+
+  marker.bindPopup(popupContent);
+  coords.push([ch.lat, ch.lng]);
+});
+
+map.fitBounds(coords, { padding: [50, 50] });
+
     map.fitBounds(coords, { padding: [50, 50] });
 
     // Render Cards
